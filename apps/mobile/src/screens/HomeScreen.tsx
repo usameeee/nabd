@@ -15,6 +15,8 @@ import { useTheme } from '../theme/ThemeProvider';
 // Static content until the API is wired (T-019).
 const STUDENT = { name: 'سارة', xp: 420 };
 const LESSON_PROGRESS = 0.62;
+// Today's lesson — matches the runner fixture (T-043) until /lessons is wired.
+const LESSON_KEY = 'heart_circulation';
 // Static preview for the TermCard until the viewer/API feed it (T-025 → T-033).
 const TERM_OF_DAY = {
   ar: 'البطين الأيسر',
@@ -100,7 +102,10 @@ export function HomeScreen({ navigation }: NativeStackScreenProps<RootStackParam
             fillColor={lessonFill}
           />
           <View style={styles.lessonAction}>
-            <Button label={t('home.continue')} />
+            <Button
+              label={t('home.continue')}
+              onPress={() => navigation.navigate('Lesson', { lessonKey: LESSON_KEY })}
+            />
           </View>
         </View>
 

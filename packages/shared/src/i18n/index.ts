@@ -50,6 +50,21 @@ export interface TranslationResources {
     // Layer chips (T-035). Only the layers this model supports get a label (docs/03 layers).
     layers: { muscles: string; vessels: string; skeleton: string; nerves: string };
   };
+  // Lesson runner (T-043): walks a lesson's steps under a segmented progress bar. Step content
+  // (titles, explain text) is data, not keys — it lives in the mobile fixture until /lessons is wired.
+  lesson: {
+    close: string;
+    /** "Step {{current}} of {{total}}" — the header under the bar. */
+    stepOf: string;
+    next: string;
+    previous: string;
+    finish: string;
+    stepTypes: { explain: string; viewer: string; video: string; case: string; quiz: string };
+    openModel: string;
+    watchVideo: string;
+    videoSoon: string;
+    quizSoon: string;
+  };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
     brandLabel: string;
@@ -320,6 +335,18 @@ export const translations: Record<Locale, TranslationResources> = {
       startQuiz: 'ابدأ اختباراً',
       watch: 'شاهد العملية',
       layers: { muscles: 'العضلات', vessels: 'الأوعية', skeleton: 'الهيكل', nerves: 'الأعصاب' },
+    },
+    lesson: {
+      close: 'خروج',
+      stepOf: 'الخطوة {{current}} من {{total}}',
+      next: 'التالي',
+      previous: 'السابق',
+      finish: 'إنهاء الدرس',
+      stepTypes: { explain: 'شرح', viewer: 'مجسّم', video: 'فيديو', case: 'حالة سريرية', quiz: 'اختبار' },
+      openModel: 'افتح المجسّم ثلاثي الأبعاد',
+      watchVideo: 'شاهد الفيديو',
+      videoSoon: 'تشغيل الفيديو قيد الإعداد.',
+      quizSoon: 'سؤال الاختبار قادم قريباً.',
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -599,6 +626,18 @@ export const translations: Record<Locale, TranslationResources> = {
       watch: 'Voir la procédure',
       layers: { muscles: 'Muscles', vessels: 'Vaisseaux', skeleton: 'Squelette', nerves: 'Nerfs' },
     },
+    lesson: {
+      close: 'Quitter',
+      stepOf: 'Étape {{current}} sur {{total}}',
+      next: 'Suivant',
+      previous: 'Précédent',
+      finish: 'Terminer la leçon',
+      stepTypes: { explain: 'Explication', viewer: 'Modèle 3D', video: 'Vidéo', case: 'Cas clinique', quiz: 'Quiz' },
+      openModel: 'Ouvrir le modèle 3D',
+      watchVideo: 'Regarder la vidéo',
+      videoSoon: 'La lecture vidéo arrive bientôt.',
+      quizSoon: 'La question du quiz arrive bientôt.',
+    },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
@@ -876,6 +915,18 @@ export const translations: Record<Locale, TranslationResources> = {
       startQuiz: 'Start a quiz',
       watch: 'Watch the procedure',
       layers: { muscles: 'Muscles', vessels: 'Vessels', skeleton: 'Skeleton', nerves: 'Nerves' },
+    },
+    lesson: {
+      close: 'Exit',
+      stepOf: 'Step {{current}} of {{total}}',
+      next: 'Next',
+      previous: 'Previous',
+      finish: 'Finish lesson',
+      stepTypes: { explain: 'Explanation', viewer: '3D model', video: 'Video', case: 'Clinical case', quiz: 'Quiz' },
+      openModel: 'Open the 3D model',
+      watchVideo: 'Watch the video',
+      videoSoon: 'Video playback is coming soon.',
+      quizSoon: 'The quiz question is coming soon.',
     },
     admin: {
       brandLabel: 'Nabd Admin',
