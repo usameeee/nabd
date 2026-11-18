@@ -1,10 +1,12 @@
 import { DefaultTheme, DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../screens/HomeScreen';
+import { ViewerScreen } from '../screens/ViewerScreen';
 import { useTheme } from '../theme/ThemeProvider';
 
 export type RootStackParamList = {
   Home: undefined;
+  Viewer: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,6 +33,7 @@ export function RootNavigator() {
     <NavigationContainer theme={navTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Viewer" component={ViewerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

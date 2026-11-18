@@ -20,4 +20,9 @@ config.resolver.nodeModulesPaths = [
 // 3. Let Metro resolve hoisted workspace deps without walking up node_modules.
 config.resolver.disableHierarchicalLookup = true;
 
+// 4. Treat glTF binaries as static assets so `require('*.glb')` returns an asset module id.
+//    'glb' is NOT in Metro's default assetExts; the viewer (T-032) needs it.
+//    `@react-three/fiber/native` patches THREE.FileLoader to resolve that id via expo-asset.
+config.resolver.assetExts.push('glb');
+
 module.exports = config;

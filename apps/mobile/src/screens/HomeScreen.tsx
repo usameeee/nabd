@@ -1,5 +1,6 @@
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { darkColors, fontFamily, fontSize, lightColors, radius, spacing } from '@nabd/shared';
 import { Button } from '../components/Button';
@@ -8,6 +9,7 @@ import { ProgressBar } from '../components/ProgressBar';
 import { TabBar } from '../components/TabBar';
 import { TermCard } from '../components/TermCard';
 import { useLocale } from '../i18n/LocaleProvider';
+import type { RootStackParamList } from '../navigation/RootNavigator';
 import { useTheme } from '../theme/ThemeProvider';
 
 // Static content until the API is wired (T-019).
@@ -29,7 +31,7 @@ const INTERACTIONS = [
 ] as const;
 
 // Home: today's lesson card + the ways to learn (docs/01 design). Static data for now.
-export function HomeScreen() {
+export function HomeScreen({ navigation }: NativeStackScreenProps<RootStackParamList, 'Home'>) {
   const { name, colors } = useTheme();
   const { rtl } = useLocale();
   const { t } = useTranslation();
@@ -108,15 +110,19 @@ export function HomeScreen() {
 
         <View style={styles.grid}>
           {INTERACTIONS.map((item) => (
-            <View
+            <Pressable
               key={item.key}
+              accessibilityRole="button"
+              // Only the anatomy model is wired so far (T-032); the rest land in later tasks.
+              disabled={item.key !== 'model'}
+              onPress={() => navigation.navigate('Viewer')}
               style={[styles.tile, { backgroundColor: colors.surface, borderColor: colors.border }]}
             >
               <View style={[styles.tileDot, { backgroundColor: tone[item.tone] }]} />
               <Text style={[styles.tileLabel, { color: colors.text, fontFamily: fontFamily.arabicBody }]}>
                 {t(`home.interaction.${item.key}`)}
               </Text>
-            </View>
+            </Pressable>
           ))}
         </View>
 

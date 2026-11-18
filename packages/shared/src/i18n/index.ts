@@ -28,6 +28,15 @@ export interface TranslationResources {
   tabs: { home: string; learn: string; review: string; profile: string };
   // Term card (docs/01): AR title → FR → EN, plus the speaker button.
   term: { speak: string };
+  // 3D viewer (docs/01). The organ label is a medical term: AR is primary and the
+  // FR · EN subtitle stays French/English in every locale, so those two are identical.
+  viewer: {
+    back: string;
+    organTitle: string;
+    organSubtitle: string;
+    loading: string;
+    hint: string;
+  };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
     brandLabel: string;
@@ -118,6 +127,13 @@ export const translations: Record<Locale, TranslationResources> = {
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
     tabs: { home: 'الرئيسية', learn: 'تعلّم', review: 'مراجعة', profile: 'الملف' },
     term: { speak: 'استمع إلى النطق' },
+    viewer: {
+      back: 'رجوع إلى الرئيسية',
+      organTitle: 'القلب',
+      organSubtitle: 'Cœur · Heart',
+      loading: 'جارٍ تحميل المجسّم…',
+      hint: 'اسحب للتدوير · اقرص للتقريب',
+    },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
@@ -209,6 +225,13 @@ export const translations: Record<Locale, TranslationResources> = {
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
     tabs: { home: 'Accueil', learn: 'Apprendre', review: 'Révision', profile: 'Profil' },
     term: { speak: 'Écouter la prononciation' },
+    viewer: {
+      back: 'Retour à l’accueil',
+      organTitle: 'القلب',
+      organSubtitle: 'Cœur · Heart',
+      loading: 'Chargement du modèle…',
+      hint: 'Glisser pour tourner · Pincer pour zoomer',
+    },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
@@ -300,6 +323,13 @@ export const translations: Record<Locale, TranslationResources> = {
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
     tabs: { home: 'Home', learn: 'Learn', review: 'Review', profile: 'Profile' },
     term: { speak: 'Listen to pronunciation' },
+    viewer: {
+      back: 'Back to home',
+      organTitle: 'القلب',
+      organSubtitle: 'Cœur · Heart',
+      loading: 'Loading model…',
+      hint: 'Drag to rotate · Pinch to zoom',
+    },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
