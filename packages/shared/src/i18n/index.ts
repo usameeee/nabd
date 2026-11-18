@@ -21,10 +21,13 @@ export interface TranslationResources {
     lessonTitle: string;
     continue: string;
     learnYourWay: string;
+    termOfDay: string;
     interaction: { model: string; clinicalCase: string; video: string; quiz: string };
   };
   language: Record<Locale, string>;
   tabs: { home: string; learn: string; review: string; profile: string };
+  // Term card (docs/01): AR title → FR → EN, plus the speaker button.
+  term: { speak: string };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
     brandLabel: string;
@@ -104,6 +107,7 @@ export const translations: Record<Locale, TranslationResources> = {
       lessonTitle: 'القلب والدورة الدموية',
       continue: 'تابع',
       learnYourWay: 'تعلّم بطريقتك',
+      termOfDay: 'مصطلح اليوم',
       interaction: {
         model: 'مجسم 3D',
         clinicalCase: 'حالة سريرية',
@@ -113,6 +117,7 @@ export const translations: Record<Locale, TranslationResources> = {
     },
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
     tabs: { home: 'الرئيسية', learn: 'تعلّم', review: 'مراجعة', profile: 'الملف' },
+    term: { speak: 'استمع إلى النطق' },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
@@ -193,6 +198,7 @@ export const translations: Record<Locale, TranslationResources> = {
       lessonTitle: 'Le cœur et la circulation',
       continue: 'Continuer',
       learnYourWay: 'Apprends à ta façon',
+      termOfDay: 'Terme du jour',
       interaction: {
         model: 'Modèle 3D',
         clinicalCase: 'Cas clinique',
@@ -202,6 +208,7 @@ export const translations: Record<Locale, TranslationResources> = {
     },
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
     tabs: { home: 'Accueil', learn: 'Apprendre', review: 'Révision', profile: 'Profil' },
+    term: { speak: 'Écouter la prononciation' },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
@@ -282,6 +289,7 @@ export const translations: Record<Locale, TranslationResources> = {
       lessonTitle: 'Heart and circulation',
       continue: 'Continue',
       learnYourWay: 'Learn your way',
+      termOfDay: 'Term of the day',
       interaction: {
         model: '3D model',
         clinicalCase: 'Clinical case',
@@ -291,6 +299,7 @@ export const translations: Record<Locale, TranslationResources> = {
     },
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
     tabs: { home: 'Home', learn: 'Learn', review: 'Review', profile: 'Profile' },
+    term: { speak: 'Listen to pronunciation' },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {

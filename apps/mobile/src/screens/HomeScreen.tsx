@@ -6,12 +6,21 @@ import { Button } from '../components/Button';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { ProgressBar } from '../components/ProgressBar';
 import { TabBar } from '../components/TabBar';
+import { TermCard } from '../components/TermCard';
 import { useLocale } from '../i18n/LocaleProvider';
 import { useTheme } from '../theme/ThemeProvider';
 
 // Static content until the API is wired (T-019).
 const STUDENT = { name: 'سارة', xp: 420 };
 const LESSON_PROGRESS = 0.62;
+// Static preview for the TermCard until the viewer/API feed it (T-025 → T-033).
+const TERM_OF_DAY = {
+  ar: 'البطين الأيسر',
+  fr: 'Ventricule gauche',
+  en: 'Left ventricle',
+  latin: 'Ventriculus sinister',
+  source: 'MANUAL',
+} as const;
 const INTERACTIONS = [
   { key: 'model', tone: 'primary' },
   { key: 'clinicalCase', tone: 'action' },
@@ -110,6 +119,17 @@ export function HomeScreen() {
             </View>
           ))}
         </View>
+
+        <Text style={[styles.sectionTitle, { color: colors.text, fontFamily: fontFamily.arabicBody, textAlign }]}>
+          {t('home.termOfDay')}
+        </Text>
+        <TermCard
+          ar={TERM_OF_DAY.ar}
+          fr={TERM_OF_DAY.fr}
+          en={TERM_OF_DAY.en}
+          latin={TERM_OF_DAY.latin}
+          source={TERM_OF_DAY.source}
+        />
 
         <LanguageSwitcher />
       </ScrollView>
