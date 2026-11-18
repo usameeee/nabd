@@ -1,4 +1,5 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,15 +9,17 @@ import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { useLocale } from '../i18n/LocaleProvider';
 import type { RootStackParamList } from '../navigation/RootNavigator';
 import { ViewerStage } from '../viewer/ViewerStage';
+import { ViewerTabs, type ViewerTab } from '../viewer/ViewerTabs';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Viewer'>;
 
 // Full-screen 3D viewer (design/screens/02-viewer-anatomy.svg). T-032/T-033/T-034 ship the header
-// + stage + hotspots + language switch; the layer chips are T-035. Painted on the viewer bg, so
-// everything here uses the on-emerald (dark) palette.
+// + stage + hotspots + language switch; the layer chips are T-035; T-041 adds the tabs (anatomy /
+// diseases) in the footer. Painted on the viewer bg, so everything here uses the on-emerald palette.
 export function ViewerScreen({ navigation }: Props) {
   const { rtl } = useLocale();
   const { t } = useTranslation();
+  const [tab, setTab] = useState<ViewerTab>('anatomy');
 
   const textAlign = rtl ? 'right' : 'left';
   // Back points right in RTL, left in LTR (mirrors the layout direction).
@@ -56,7 +59,8 @@ export function ViewerScreen({ navigation }: Props) {
         <LanguageSwitcher variant="viewer" />
       </View>
 
-      <ViewerStage />
+      <ViewerStage tab={tab} />
+      <ViewerTabs tab={tab} onSelect={setTab} />
     </SafeAreaView>
   );
 }

@@ -14,13 +14,20 @@ import { useTranslation } from 'react-i18next';
 import * as THREE from 'three';
 import { darkColors, fontFamily, fontSize, radius, spacing } from '@nabd/shared';
 import { DetailedModelPreloader, HeartModel, type ModelFrame } from './HeartModel';
+import { DiseaseCard } from './DiseaseCard';
+import { DiseaseChips } from './DiseaseChips';
 import { HotspotAnchors, type HotspotMarker } from './HotspotAnchors';
 import { HotspotOverlay } from './HotspotOverlay';
 import { LayerChips } from './LayerChips';
+import { StageSlider } from './StageSlider';
+import { StageVisuals } from './StageVisuals';
 import { TermSheet } from './TermSheet';
+import { HEART_DISEASES, DISEASE_TERMS } from './diseases';
 import { HEART_HOTSPOTS } from './hotspots';
 import { HEART_LAYERS, type LayerKey } from './layers';
 import { useTheme } from '../theme/ThemeProvider';
+import { useLocale } from '../i18n/LocaleProvider';
+import type { ViewerTab } from './ViewerTabs';
 
 /** Camera rig state. Only mutated through a ref so gestures never re-render React. */
 interface Motion {
@@ -51,6 +58,8 @@ const ROTATE_SPEED = 0.01;
 const SMOOTHING = 0.16;
 // Park unprojected markers off-screen so they don't flash at the top-left corner.
 const OFFSCREEN = -1000;
+// Stable empty list so the diseases tab doesn't churn the anchors/overlay every render.
+const NO_HOTSPOTS: typeof HEART_HOTSPOTS = [];
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
@@ -96,16 +105,42 @@ function Ready({ onReady }: { onReady: () => void }) {
   return null;
 }
 
-export function ViewerStage() {
+export function ViewerStage({ tab }: { tab: ViewerTab }) {
   const { colors } = useTheme();
+  const { locale } = useLocale();
   const { t } = useTranslation();
   const [ready, setReady] = useState(false);
   const [detailed, setDetailed] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [layer, setLayer] = useState<LayerKey>(HEART_LAYERS[0]?.key ?? 'muscles');
+  const [model, setModel] = useState<THREE.Object3D | null>(null);
+  // Disease tab state (T-041): the picked disease and the stage its visual is eased onto the model.
+  const [diseaseKey, setDiseaseKey] = useState(HEART_DISEASES[0]?.key ?? '');
+  const [stageIndex, setStageIndex] = useState(0);
   const markReady = useCallback(() => setReady(true), []);
   // Flipped by the preloader once the detailed LOD is parsed, to swap it in without a re-suspend.
   const markDetailed = useCallback(() => setDetailed(true), []);
+  const handleObject = useCallback((object: THREE.Object3D) => setModel(object), []);
+
+  const disease = useMemo(
+    () => HEART_DISEASES.find((item) => item.key === diseaseKey) ?? HEART_DISEASES[0],
+    [diseaseKey],
+  );
+  const stage = disease?.stages[stageIndex];
+  const stops = useMemo(
+    () =>
+      (disease?.stages ?? []).map((item) => ({
+        key: item.key,
+        label: (item.labelTermKey && DISEASE_TERMS[item.labelTermKey]?.[locale]) ?? item.key,
+      })),
+    [disease, locale],
+  );
+
+  // Switching disease restarts at the first stage; leaving the diseases tab closes the term sheet.
+  useEffect(() => setStageIndex(0), [diseaseKey]);
+  useEffect(() => {
+    if (tab !== 'anatomy') setSelected(null);
+  }, [tab]);
 
   const motion = useRef<Motion>({
     rotX: 0,
@@ -131,10 +166,11 @@ export function ViewerStage() {
   }, []);
 
   // The active layer (T-035) decides which hotspots are shown; the heart model populates a single
-  // layer, so today every hotspot is on it and the row shows one chip.
+  // layer, so today every hotspot is on it and the row shows one chip. Hotspots belong to the
+  // anatomy tab only — the diseases tab shows the stage slider instead (T-041).
   const visibleHotspots = useMemo(
-    () => HEART_HOTSPOTS.filter((hotspot) => hotspot.layer === layer),
-    [layer],
+    () => (tab === 'anatomy' ? HEART_HOTSPOTS.filter((hotspot) => hotspot.layer === layer) : NO_HOTSPOTS),
+    [tab, layer],
   );
 
   // Turn the model so the tapped hotspot faces the camera, then open its term sheet.
@@ -226,11 +262,17 @@ export function ViewerStage() {
         <directionalLight position={[-3, -2, -3]} intensity={0.9} />
         <Suspense fallback={null}>
           <Rig motion={motion}>
-            <HeartModel source={detailed ? 'detailed' : 'light'} onFrame={handleFrame}>
+            <HeartModel
+              source={detailed ? 'detailed' : 'light'}
+              onFrame={handleFrame}
+              onObject={handleObject}
+            >
               <HotspotAnchors hotspots={visibleHotspots} markers={markers} />
             </HeartModel>
           </Rig>
           <Ready onReady={markReady} />
+          {/* Eases the active disease stage's material states onto the model (T-041). */}
+          <StageVisuals object={model} stage={tab === 'diseases' ? stage : undefined} />
           {/* Lazy detailed LOD (T-037): only starts after the light model is on screen, then swaps it
               in from cache. Its own boundary keeps the heavy parse from blanking the visible model. */}
           {ready && !detailed ? (
@@ -267,15 +309,18 @@ export function ViewerStage() {
         )}
       </View>
 
-      {/* Bottom controls: the gesture hint and the layer chips (only what the model supports, T-035). */}
-      <View pointerEvents="box-none" style={styles.bottom}>
-        <View pointerEvents="none" style={styles.hintWrap}>
-          <View style={[styles.hint, { backgroundColor: darkColors.surface }]}>
-            <Text style={[styles.hintText, { color: darkColors.text }]}>{t('viewer.hint')}</Text>
+      {/* Bottom controls: the gesture hint and the layer chips (only what the model supports, T-035).
+          Both belong to the anatomy tab — the diseases tab shows the stage slider + card instead. */}
+      {tab === 'anatomy' ? (
+        <View pointerEvents="box-none" style={styles.bottom}>
+          <View pointerEvents="none" style={styles.hintWrap}>
+            <View style={[styles.hint, { backgroundColor: darkColors.surface }]}>
+              <Text style={[styles.hintText, { color: darkColors.text }]}>{t('viewer.hint')}</Text>
+            </View>
           </View>
+          <LayerChips active={layer} onSelect={setLayer} />
         </View>
-        <LayerChips active={layer} onSelect={setLayer} />
-      </View>
+      ) : null}
 
       <HotspotOverlay
         hotspots={visibleHotspots}
@@ -284,6 +329,23 @@ export function ViewerStage() {
         onSelect={selectHotspot}
       />
       <TermSheet termKey={selected} onClose={closeSheet} />
+
+      {/* Diseases tab (T-041): disease picker above the model, stage slider + card pinned to the foot. */}
+      {tab === 'diseases' && disease ? (
+        <>
+          <View style={styles.diseaseChips}>
+            <DiseaseChips
+              diseases={HEART_DISEASES}
+              activeKey={disease.key}
+              onSelect={setDiseaseKey}
+            />
+          </View>
+          <View pointerEvents="box-none" style={styles.diseaseBottom}>
+            <StageSlider stops={stops} active={stageIndex} onSelect={setStageIndex} />
+            <DiseaseCard disease={disease} />
+          </View>
+        </>
+      ) : null}
     </View>
   );
 }
@@ -341,5 +403,18 @@ const styles = StyleSheet.create({
   hintText: {
     fontSize: fontSize.caption,
     fontFamily: fontFamily.arabicBody,
+  },
+  diseaseChips: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: spacing.sm,
+  },
+  diseaseBottom: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    gap: spacing.sm,
   },
 });

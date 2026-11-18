@@ -28,6 +28,8 @@ interface HeartModelProps {
   source?: ModelSource;
   /** Reports the re-frame transform so callers can map model-space points into the scene. */
   onFrame?: (frame: ModelFrame) => void;
+  /** Reports the re-framed root object so callers can reach its meshes (e.g. disease stages, T-041). */
+  onObject?: (object: THREE.Object3D) => void;
   /** Children are parented to the re-framed model, so they inherit its origin/scale (e.g. hotspots). */
   children?: ReactNode;
 }
@@ -36,7 +38,7 @@ interface HeartModelProps {
  * Loads the optimised heart model and re-frames it: the sources don't share an origin, so
  * the object is re-centred on the origin and scaled so its longest side spans `size` units.
  */
-export function HeartModel({ size = 2, source = 'light', onFrame, children }: HeartModelProps) {
+export function HeartModel({ size = 2, source = 'light', onFrame, onObject, children }: HeartModelProps) {
   // Both LODs share one author-space (the light one is a derivative of the detailed source with the
   // same node transforms), so the re-frame maps hotspot model-space points onto either the same way.
   const gltf = useLoader(GLTFLoader, source === 'detailed' ? HEART_DETAILED : HEART_LIGHT);
@@ -59,6 +61,10 @@ export function HeartModel({ size = 2, source = 'light', onFrame, children }: He
   useEffect(() => {
     onFrame?.(frame);
   }, [frame, onFrame]);
+
+  useEffect(() => {
+    onObject?.(object);
+  }, [object, onObject]);
 
   return <primitive object={object}>{children}</primitive>;
 }

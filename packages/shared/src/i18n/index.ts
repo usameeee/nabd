@@ -39,6 +39,14 @@ export interface TranslationResources {
     loading: string;
     hint: string;
     close: string;
+    // Viewer tabs (T-041): anatomy (hotspots) + diseases (stage slider). The mockup's "function"
+    // tab is deferred until there is content for it.
+    tabs: { anatomy: string; diseases: string };
+    // Disease panel (T-041): the ICD-11 badge, the symptoms heading and the two actions.
+    icd11: string;
+    symptoms: string;
+    startQuiz: string;
+    watch: string;
     // Layer chips (T-035). Only the layers this model supports get a label (docs/03 layers).
     layers: { muscles: string; vessels: string; skeleton: string; nerves: string };
   };
@@ -251,6 +259,11 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'جارٍ تحميل المجسّم…',
       hint: 'اسحب للتدوير · اقرص للتقريب',
       close: 'إغلاق',
+      tabs: { anatomy: 'التشريح', diseases: 'الأمراض' },
+      icd11: 'ICD-11',
+      symptoms: 'الأعراض الرئيسية',
+      startQuiz: 'ابدأ اختباراً',
+      watch: 'شاهد العملية',
       layers: { muscles: 'العضلات', vessels: 'الأوعية', skeleton: 'الهيكل', nerves: 'الأعصاب' },
     },
     admin: {
@@ -463,6 +476,11 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'Chargement du modèle…',
       hint: 'Glisser pour tourner · Pincer pour zoomer',
       close: 'Fermer',
+      tabs: { anatomy: 'Anatomie', diseases: 'Maladies' },
+      icd11: 'ICD-11',
+      symptoms: 'Symptômes principaux',
+      startQuiz: 'Démarrer un quiz',
+      watch: 'Voir la procédure',
       layers: { muscles: 'Muscles', vessels: 'Vaisseaux', skeleton: 'Squelette', nerves: 'Nerfs' },
     },
     admin: {
@@ -675,6 +693,11 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'Loading model…',
       hint: 'Drag to rotate · Pinch to zoom',
       close: 'Close',
+      tabs: { anatomy: 'Anatomy', diseases: 'Diseases' },
+      icd11: 'ICD-11',
+      symptoms: 'Main symptoms',
+      startQuiz: 'Start a quiz',
+      watch: 'Watch the procedure',
       layers: { muscles: 'Muscles', vessels: 'Vessels', skeleton: 'Skeleton', nerves: 'Nerves' },
     },
     admin: {
