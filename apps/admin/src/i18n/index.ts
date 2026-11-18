@@ -1,4 +1,4 @@
-import { translations, type DiseaseStatus, type Locale, type ModelLayerKey, type ModelStatus, type TermStatus } from '@nabd/shared';
+import { translations, type DiseaseStatus, type LessonStatus, type LessonStepType, type Locale, type ModelLayerKey, type ModelStatus, type TermStatus } from '@nabd/shared';
 
 // Admin UI language. English is the neutral team language for now; strings still
 // come from the shared i18n keys (never hardcoded) so a switcher can be added later.
@@ -31,5 +31,17 @@ export function diseaseStatusLabel(status: DiseaseStatus): string {
   if (status === 'draft') return admin.diseases.statusDraft;
   if (status === 'needs_review') return admin.diseases.statusNeedsReview;
   return admin.diseases.statusVerified;
+}
+
+// Localized label for a lesson `status` (draft / needs_review / verified).
+export function lessonStatusLabel(status: LessonStatus): string {
+  if (status === 'draft') return admin.lessons.statusDraft;
+  if (status === 'needs_review') return admin.lessons.statusNeedsReview;
+  return admin.lessons.statusVerified;
+}
+
+// Localized label for a lesson step type (explain / viewer / video / case / quiz).
+export function stepTypeLabel(type: LessonStepType): string {
+  return admin.lessons.stepTypes[type];
 }
 

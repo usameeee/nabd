@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../auth/AuthContext';
 import { admin, brand } from '../i18n';
 import { DiseasesPage } from './DiseasesPage';
+import { LessonsPage } from './LessonsPage';
 import { ModelsPage } from './ModelsPage';
 import { TermsPage } from './TermsPage';
 
@@ -66,6 +67,8 @@ export function DashboardPage() {
           <ModelsPage token={session.token} />
         ) : section === 'diseases' ? (
           <DiseasesPage token={session.token} />
+        ) : section === 'lessons' ? (
+          <LessonsPage token={session.token} />
         ) : (
           <section className="card">
             <p className="card__muted">

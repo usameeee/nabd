@@ -225,6 +225,61 @@ export interface TranslationResources {
       statusNeedsReview: string;
       statusVerified: string;
     };
+    lessons: {
+      newLesson: string;
+      search: string;
+      status: string;
+      all: string;
+      empty: string;
+      edit: string;
+      page: string;
+      previous: string;
+      next: string;
+      colKey: string;
+      colTitle: string;
+      colUnit: string;
+      colOrder: string;
+      colSteps: string;
+      colStatus: string;
+      createTitle: string;
+      editTitle: string;
+      key: string;
+      keyHint: string;
+      titleAr: string;
+      titleFr: string;
+      titleEn: string;
+      unit: string;
+      unitHint: string;
+      order: string;
+      orderHint: string;
+      faculty: string;
+      year: string;
+      yearHint: string;
+      steps: string;
+      noSteps: string;
+      addStep: string;
+      removeStep: string;
+      stepType: string;
+      stepXp: string;
+      stepRef: string;
+      refModelKey: string;
+      refDiseaseKey: string;
+      refHotspotIds: string;
+      refVideoId: string;
+      refCaseId: string;
+      refQuizId: string;
+      termKeys: string;
+      termKeysHint: string;
+      optional: string;
+      save: string;
+      saving: string;
+      cancel: string;
+      error: string;
+      statusDraft: string;
+      statusNeedsReview: string;
+      statusVerified: string;
+      stepTypes: { explain: string; viewer: string; video: string; case: string; quiz: string };
+    };
   };
 }
 
@@ -444,6 +499,67 @@ export const translations: Record<Locale, TranslationResources> = {
         statusNeedsReview: 'قيد المراجعة',
         statusVerified: 'موثّق',
       },
+      lessons: {
+        newLesson: 'درس جديد',
+        search: 'ابحث عن درس…',
+        status: 'الحالة',
+        all: 'الكل',
+        empty: 'لا توجد دروس.',
+        edit: 'تعديل',
+        page: 'صفحة',
+        previous: 'السابق',
+        next: 'التالي',
+        colKey: 'المفتاح',
+        colTitle: 'العنوان',
+        colUnit: 'الوحدة',
+        colOrder: 'الترتيب',
+        colSteps: 'الخطوات',
+        colStatus: 'الحالة',
+        createTitle: 'درس جديد',
+        editTitle: 'تعديل درس',
+        key: 'المفتاح (snake_case)',
+        keyHint: 'أحرف صغيرة، مثال heart_circulation. لا يمكن تغييره لاحقاً.',
+        titleAr: 'العنوان (عربي)',
+        titleFr: 'العنوان (فرنسي)',
+        titleEn: 'العنوان (إنجليزي)',
+        unit: 'الوحدة',
+        unitHint: 'تجميع حر، مثال cardiology.',
+        order: 'الترتيب',
+        orderHint: 'ترتيب الدرس داخل الوحدة.',
+        faculty: 'الكلية',
+        year: 'السنة',
+        yearHint: 'السنة الدراسية، مثال 1.',
+        steps: 'الخطوات',
+        noSteps: 'لا توجد خطوات بعد.',
+        addStep: 'إضافة خطوة',
+        removeStep: 'حذف',
+        stepType: 'نوع الخطوة',
+        stepXp: 'نقاط الخبرة (XP)',
+        stepRef: 'مرجع الخطوة',
+        refModelKey: 'مفتاح المجسّم',
+        refDiseaseKey: 'مفتاح المرض',
+        refHotspotIds: 'معرّفات النقاط (مفصولة بفواصل)',
+        refVideoId: 'معرّف الفيديو',
+        refCaseId: 'معرّف الحالة',
+        refQuizId: 'معرّف الاختبار',
+        termKeys: 'المصطلحات المفتوحة',
+        termKeysHint: 'مفاتيح مصطلحات مفصولة بفواصل، تُفتح عند إتمام الدرس.',
+        optional: 'اختياري',
+        save: 'حفظ',
+        saving: 'جارٍ الحفظ…',
+        cancel: 'إلغاء',
+        error: 'تعذّر حفظ الدرس.',
+        statusDraft: 'مسودة',
+        statusNeedsReview: 'قيد المراجعة',
+        statusVerified: 'موثّق',
+        stepTypes: {
+          explain: 'شرح',
+          viewer: 'مجسّم',
+          video: 'فيديو',
+          case: 'حالة سريرية',
+          quiz: 'اختبار',
+        },
+      },
     },
   },
   fr: {
@@ -661,6 +777,67 @@ export const translations: Record<Locale, TranslationResources> = {
         statusNeedsReview: 'À vérifier',
         statusVerified: 'Vérifié',
       },
+      lessons: {
+        newLesson: 'Nouvelle leçon',
+        search: 'Rechercher une leçon…',
+        status: 'Statut',
+        all: 'Tous',
+        empty: 'Aucune leçon trouvée.',
+        edit: 'Modifier',
+        page: 'Page',
+        previous: 'Précédent',
+        next: 'Suivant',
+        colKey: 'Clé',
+        colTitle: 'Titre',
+        colUnit: 'Unité',
+        colOrder: 'Ordre',
+        colSteps: 'Étapes',
+        colStatus: 'Statut',
+        createTitle: 'Nouvelle leçon',
+        editTitle: 'Modifier la leçon',
+        key: 'Clé (snake_case)',
+        keyHint: 'En minuscules, ex. heart_circulation. Non modifiable ensuite.',
+        titleAr: 'Titre (arabe)',
+        titleFr: 'Titre (français)',
+        titleEn: 'Titre (anglais)',
+        unit: 'Unité',
+        unitHint: 'Regroupement libre, ex. cardiology.',
+        order: 'Ordre',
+        orderHint: 'Position de la leçon dans l’unité.',
+        faculty: 'Faculté',
+        year: 'Année',
+        yearHint: 'Année d’études, ex. 1.',
+        steps: 'Étapes',
+        noSteps: 'Aucune étape pour l’instant.',
+        addStep: 'Ajouter une étape',
+        removeStep: 'Supprimer',
+        stepType: 'Type d’étape',
+        stepXp: 'Points d’XP',
+        stepRef: 'Référence de l’étape',
+        refModelKey: 'Clé du modèle',
+        refDiseaseKey: 'Clé de la maladie',
+        refHotspotIds: 'Ids des points (séparés par des virgules)',
+        refVideoId: 'Id de la vidéo',
+        refCaseId: 'Id du cas',
+        refQuizId: 'Id du quiz',
+        termKeys: 'Termes débloqués',
+        termKeysHint: 'Clés de termes séparées par des virgules, débloquées à la fin de la leçon.',
+        optional: 'facultatif',
+        save: 'Enregistrer',
+        saving: 'Enregistrement…',
+        cancel: 'Annuler',
+        error: 'Impossible d’enregistrer la leçon.',
+        statusDraft: 'Brouillon',
+        statusNeedsReview: 'À vérifier',
+        statusVerified: 'Vérifié',
+        stepTypes: {
+          explain: 'Explication',
+          viewer: 'Modèle 3D',
+          video: 'Vidéo',
+          case: 'Cas clinique',
+          quiz: 'Quiz',
+        },
+      },
     },
   },
   en: {
@@ -877,6 +1054,67 @@ export const translations: Record<Locale, TranslationResources> = {
         statusDraft: 'Draft',
         statusNeedsReview: 'Needs review',
         statusVerified: 'Verified',
+      },
+      lessons: {
+        newLesson: 'New lesson',
+        search: 'Search lessons…',
+        status: 'Status',
+        all: 'All',
+        empty: 'No lessons found.',
+        edit: 'Edit',
+        page: 'Page',
+        previous: 'Previous',
+        next: 'Next',
+        colKey: 'Key',
+        colTitle: 'Title',
+        colUnit: 'Unit',
+        colOrder: 'Order',
+        colSteps: 'Steps',
+        colStatus: 'Status',
+        createTitle: 'New lesson',
+        editTitle: 'Edit lesson',
+        key: 'Key (snake_case)',
+        keyHint: 'Lowercase, e.g. heart_circulation. Cannot be changed later.',
+        titleAr: 'Title (Arabic)',
+        titleFr: 'Title (French)',
+        titleEn: 'Title (English)',
+        unit: 'Unit',
+        unitHint: 'Free grouping, e.g. cardiology.',
+        order: 'Order',
+        orderHint: 'Position of the lesson inside the unit.',
+        faculty: 'Faculty',
+        year: 'Year',
+        yearHint: 'Study year, e.g. 1.',
+        steps: 'Steps',
+        noSteps: 'No steps yet.',
+        addStep: 'Add step',
+        removeStep: 'Remove',
+        stepType: 'Step type',
+        stepXp: 'XP',
+        stepRef: 'Step reference',
+        refModelKey: 'Model key',
+        refDiseaseKey: 'Disease key',
+        refHotspotIds: 'Hotspot ids (comma separated)',
+        refVideoId: 'Video id',
+        refCaseId: 'Case id',
+        refQuizId: 'Quiz id',
+        termKeys: 'Unlocked terms',
+        termKeysHint: 'Term keys separated by commas, unlocked when the lesson is finished.',
+        optional: 'optional',
+        save: 'Save',
+        saving: 'Saving…',
+        cancel: 'Cancel',
+        error: 'Could not save the lesson.',
+        statusDraft: 'Draft',
+        statusNeedsReview: 'Needs review',
+        statusVerified: 'Verified',
+        stepTypes: {
+          explain: 'Explanation',
+          viewer: '3D model',
+          video: 'Video',
+          case: 'Clinical case',
+          quiz: 'Quiz',
+        },
       },
     },
   },
