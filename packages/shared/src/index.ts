@@ -4,5 +4,8 @@ export * from './i18n';
 export * from './types/api';
 export * from './types/roles';
 export * from './types/terms';
+export * from './types/models';
 export * from './schemas/auth';
 export * from './schemas/term';
+export * from './schemas/model';
+export * from './schemas/hotspot';
