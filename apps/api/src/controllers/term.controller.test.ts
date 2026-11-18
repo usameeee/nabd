@@ -1,7 +1,12 @@
 import type { NextFunction, Request, Response } from 'express';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as termService from '../services/term.service';
-import { getTermHandler, listTermsAdminHandler, listTermsHandler } from './term.controller';
+import {
+  getTermHandler,
+  listTermsAdminHandler,
+  listTermsHandler,
+  updateTermHandler,
+} from './term.controller';
 
 vi.mock('../services/term.service', () => ({
   listTerms: vi.fn().mockResolvedValue({ items: [], page: 1, limit: 20, total: 0 }),
@@ -51,6 +56,27 @@ describe('admin term reads', () => {
     await listTermsAdminHandler(req, res, next);
 
     expect(termService.listTerms).toHaveBeenCalledWith({ page: 1, limit: 20 });
+    expect(next).not.toHaveBeenCalled();
+  });
+});
+
+describe('term updates', () => {
+  it('passes the authenticated actor so the review stamp can be saved', async () => {
+    const req = {
+      params: { key: 'left_ventricle' },
+      body: { status: 'verified' },
+      user: { id: 'doc1', role: 'doctor_reviewer' },
+    } as unknown as Request;
+    const res = fakeRes();
+    const next = vi.fn() as unknown as NextFunction;
+
+    await updateTermHandler(req, res, next);
+
+    expect(termService.updateTerm).toHaveBeenCalledWith(
+      'left_ventricle',
+      { status: 'verified' },
+      { id: 'doc1', role: 'doctor_reviewer' },
+    );
     expect(next).not.toHaveBeenCalled();
   });
 });

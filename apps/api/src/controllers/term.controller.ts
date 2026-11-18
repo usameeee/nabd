@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
+import type { Role } from '@nabd/shared';
 import { createTermSchema, termListQuerySchema, updateTermSchema } from '@nabd/shared';
 import * as termService from '../services/term.service';
 import { ok } from '../utils/response';
@@ -69,7 +70,9 @@ export async function updateTermHandler(
   try {
     const key = req.params.key as string;
     const input = updateTermSchema.parse(req.body);
-    const term = await termService.updateTerm(key, input);
+    // `authenticate` guarantees req.user; the service needs the role to gate `verified`.
+    const actor = req.user as { id: string; role: Role };
+    const term = await termService.updateTerm(key, input, actor);
     res.json(ok(term));
   } catch (err) {
     next(err);

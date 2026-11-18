@@ -1,5 +1,11 @@
 import type { FilterQuery } from 'mongoose';
-import type { CreateTermInput, TermListQuery, TermStats, UpdateTermInput } from '@nabd/shared';
+import type {
+  CreateTermInput,
+  Role,
+  TermListQuery,
+  TermStats,
+  UpdateTermInput,
+} from '@nabd/shared';
 import { AppError } from '../errors/AppError';
 import { TermModel, type Term } from '../models/Term.model';
 
@@ -7,6 +13,14 @@ import { TermModel, type Term } from '../models/Term.model';
 interface ReadOptions {
   onlyVerified?: boolean;
 }
+
+// The authenticated caller; only these roles may flip a term to `verified` (docs/02).
+export interface Actor {
+  id: string;
+  role: Role;
+}
+
+const REVIEWER_ROLES: Role[] = ['doctor_reviewer', 'admin'];
 
 export async function listTerms(query: TermListQuery, options: ReadOptions = {}) {
   const { page, limit, category, status, q } = query;
@@ -61,8 +75,27 @@ export async function createTerm(input: CreateTermInput, createdBy?: string) {
   });
 }
 
-export async function updateTerm(key: string, input: UpdateTermInput) {
-  const term = await TermModel.findOneAndUpdate({ key }, input, { new: true });
+// Only a doctor_reviewer (or admin) may publish a term; the review stamp is recorded server-side
+// and cannot be set (or faked) through the request body (docs/02 publishing gate).
+export async function updateTerm(key: string, input: UpdateTermInput, actor: Actor) {
+  const update: UpdateTermInput & {
+    reviewedBy?: string | null;
+    reviewedAt?: Date | null;
+  } = { ...input };
+
+  if (input.status === 'verified') {
+    if (!REVIEWER_ROLES.includes(actor.role)) {
+      throw new AppError('FORBIDDEN', 'Only a doctor reviewer can verify a term', 403);
+    }
+    update.reviewedBy = actor.id;
+    update.reviewedAt = new Date();
+  } else if (input.status) {
+    // Moving away from `verified` clears the review stamp so it can never mislead.
+    update.reviewedBy = null;
+    update.reviewedAt = null;
+  }
+
+  const term = await TermModel.findOneAndUpdate({ key }, update, { new: true });
   if (!term) {
     throw new AppError('NOT_FOUND', 'Term not found', 404);
   }
