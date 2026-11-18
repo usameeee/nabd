@@ -1,4 +1,4 @@
-import { translations, type Locale, type ModelLayerKey, type ModelStatus, type TermStatus } from '@nabd/shared';
+import { translations, type DiseaseStatus, type Locale, type ModelLayerKey, type ModelStatus, type TermStatus } from '@nabd/shared';
 
 // Admin UI language. English is the neutral team language for now; strings still
 // come from the shared i18n keys (never hardcoded) so a switcher can be added later.
@@ -24,5 +24,12 @@ export function layerLabel(layer: ModelLayerKey): string {
 // Localized label for a model `status` (draft / verified).
 export function modelStatusLabel(status: ModelStatus): string {
   return status === 'verified' ? admin.models.statusVerified : admin.models.statusDraft;
+}
+
+// Localized label for a disease `status` (draft / needs_review / verified).
+export function diseaseStatusLabel(status: DiseaseStatus): string {
+  if (status === 'draft') return admin.diseases.statusDraft;
+  if (status === 'needs_review') return admin.diseases.statusNeedsReview;
+  return admin.diseases.statusVerified;
 }
 

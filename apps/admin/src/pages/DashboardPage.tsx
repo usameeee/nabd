@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../auth/AuthContext';
 import { admin, brand } from '../i18n';
+import { DiseasesPage } from './DiseasesPage';
 import { ModelsPage } from './ModelsPage';
 import { TermsPage } from './TermsPage';
 
@@ -8,6 +9,7 @@ const NAV_ITEMS = [
   'overview',
   'organs',
   'terms',
+  'diseases',
   'lessons',
   'cases',
   'quizzes',
@@ -62,6 +64,8 @@ export function DashboardPage() {
           <TermsPage token={session.token} />
         ) : section === 'organs' ? (
           <ModelsPage token={session.token} />
+        ) : section === 'diseases' ? (
+          <DiseasesPage token={session.token} />
         ) : (
           <section className="card">
             <p className="card__muted">

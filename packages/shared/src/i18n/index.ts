@@ -49,6 +49,7 @@ export interface TranslationResources {
       overview: string;
       organs: string;
       terms: string;
+      diseases: string;
       lessons: string;
       cases: string;
       quizzes: string;
@@ -165,6 +166,57 @@ export interface TranslationResources {
       termKeyHint: string;
       errorHotspot: string;
     };
+    diseases: {
+      newDisease: string;
+      search: string;
+      status: string;
+      all: string;
+      empty: string;
+      edit: string;
+      page: string;
+      previous: string;
+      next: string;
+      colKey: string;
+      colTerm: string;
+      colModel: string;
+      colStages: string;
+      colStatus: string;
+      createTitle: string;
+      editTitle: string;
+      key: string;
+      keyHint: string;
+      termKey: string;
+      termKeyHint: string;
+      modelKey: string;
+      modelKeyHint: string;
+      icd11Code: string;
+      icd11Uri: string;
+      symptoms: string;
+      symptomsHint: string;
+      stages: string;
+      noStages: string;
+      addStage: string;
+      stageKey: string;
+      stageLabelTermKey: string;
+      highlightMeshes: string;
+      vesselNarrowing: string;
+      materialOverrides: string;
+      materialOverridesHint: string;
+      removeStage: string;
+      videos: string;
+      videosHint: string;
+      quizId: string;
+      publish: string;
+      unpublish: string;
+      optional: string;
+      save: string;
+      saving: string;
+      cancel: string;
+      error: string;
+      statusDraft: string;
+      statusNeedsReview: string;
+      statusVerified: string;
+    };
   };
 }
 
@@ -207,6 +259,7 @@ export const translations: Record<Locale, TranslationResources> = {
         overview: 'نظرة عامة',
         organs: 'الأعضاء والمجسّمات',
         terms: 'المصطلحات والترجمة',
+        diseases: 'الأمراض',
         lessons: 'الدروس',
         cases: 'الحالات والفيديوهات',
         quizzes: 'الاختبارات',
@@ -327,6 +380,57 @@ export const translations: Record<Locale, TranslationResources> = {
         termKeyHint: 'مفتاح مصطلح من قسم المصطلحات، مثال left_ventricle.',
         errorHotspot: 'تعذّر حفظ النقطة.',
       },
+      diseases: {
+        newDisease: 'مرض جديد',
+        search: 'ابحث عن مرض…',
+        status: 'الحالة',
+        all: 'الكل',
+        empty: 'لا توجد أمراض.',
+        edit: 'تعديل',
+        page: 'صفحة',
+        previous: 'السابق',
+        next: 'التالي',
+        colKey: 'المفتاح',
+        colTerm: 'مصطلح المرض',
+        colModel: 'المجسّم',
+        colStages: 'المراحل',
+        colStatus: 'الحالة',
+        createTitle: 'مرض جديد',
+        editTitle: 'تعديل مرض',
+        key: 'المفتاح (snake_case)',
+        keyHint: 'أحرف صغيرة، مثال myocardial_infarction. لا يمكن تغييره لاحقاً.',
+        termKey: 'مفتاح مصطلح المرض',
+        termKeyHint: 'مفتاح مصطلح من فئة «disease»، مثال myocardial_infarction.',
+        modelKey: 'مفتاح المجسّم',
+        modelKeyHint: 'المجسّم الذي تُعرض عليه المراحل، مثال heart.',
+        icd11Code: 'رمز ICD-11',
+        icd11Uri: 'رابط ICD-11',
+        symptoms: 'الأعراض',
+        symptomsHint: 'مفاتيح مصطلحات مفصولة بفواصل (فئة «symptom»).',
+        stages: 'المراحل',
+        noStages: 'لا توجد مراحل بعد.',
+        addStage: 'إضافة مرحلة',
+        stageKey: 'مفتاح المرحلة',
+        stageLabelTermKey: 'مفتاح مصطلح التسمية',
+        highlightMeshes: 'الشبكات المميّزة (مفصولة بفواصل)',
+        vesselNarrowing: 'تضيّق الوعاء (0–1)',
+        materialOverrides: 'تجاوزات المادة (JSON)',
+        materialOverridesHint: 'معاملات مادة Three.js اختيارية بصيغة JSON.',
+        removeStage: 'حذف',
+        videos: 'الفيديوهات',
+        videosHint: 'معرّفات الفيديوهات مفصولة بفواصل.',
+        quizId: 'معرّف الاختبار',
+        publish: 'نشر',
+        unpublish: 'إلغاء النشر',
+        optional: 'اختياري',
+        save: 'حفظ',
+        saving: 'جارٍ الحفظ…',
+        cancel: 'إلغاء',
+        error: 'تعذّر حفظ المرض.',
+        statusDraft: 'مسودة',
+        statusNeedsReview: 'قيد المراجعة',
+        statusVerified: 'موثّق',
+      },
     },
   },
   fr: {
@@ -367,6 +471,7 @@ export const translations: Record<Locale, TranslationResources> = {
         overview: 'Vue d’ensemble',
         organs: 'Organes et modèles',
         terms: 'Termes et traduction',
+        diseases: 'Maladies',
         lessons: 'Leçons',
         cases: 'Cas et vidéos',
         quizzes: 'Quiz',
@@ -487,6 +592,57 @@ export const translations: Record<Locale, TranslationResources> = {
         termKeyHint: 'Une clé de terme, ex. left_ventricle.',
         errorHotspot: 'Impossible d’enregistrer le point.',
       },
+      diseases: {
+        newDisease: 'Nouvelle maladie',
+        search: 'Rechercher une maladie…',
+        status: 'Statut',
+        all: 'Tous',
+        empty: 'Aucune maladie trouvée.',
+        edit: 'Modifier',
+        page: 'Page',
+        previous: 'Précédent',
+        next: 'Suivant',
+        colKey: 'Clé',
+        colTerm: 'Terme de la maladie',
+        colModel: 'Modèle',
+        colStages: 'Étapes',
+        colStatus: 'Statut',
+        createTitle: 'Nouvelle maladie',
+        editTitle: 'Modifier la maladie',
+        key: 'Clé (snake_case)',
+        keyHint: 'En minuscules, ex. myocardial_infarction. Non modifiable ensuite.',
+        termKey: 'Clé du terme de la maladie',
+        termKeyHint: 'Une clé de terme de catégorie « disease », ex. myocardial_infarction.',
+        modelKey: 'Clé du modèle',
+        modelKeyHint: 'Le modèle sur lequel ces étapes sont affichées, ex. heart.',
+        icd11Code: 'Code CIM-11',
+        icd11Uri: 'URI CIM-11',
+        symptoms: 'Symptômes',
+        symptomsHint: 'Clés de termes séparées par des virgules (catégorie « symptom »).',
+        stages: 'Étapes',
+        noStages: 'Aucune étape pour l’instant.',
+        addStage: 'Ajouter une étape',
+        stageKey: 'Clé de l’étape',
+        stageLabelTermKey: 'Clé du terme de libellé',
+        highlightMeshes: 'Maillages en surbrillance (séparés par des virgules)',
+        vesselNarrowing: 'Rétrécissement (0–1)',
+        materialOverrides: 'Remplacements de matériau (JSON)',
+        materialOverridesHint: 'Paramètres de matériau Three.js facultatifs, en JSON.',
+        removeStage: 'Supprimer',
+        videos: 'Vidéos',
+        videosHint: 'Identifiants de vidéos séparés par des virgules.',
+        quizId: 'Identifiant du quiz',
+        publish: 'Publier',
+        unpublish: 'Dépublier',
+        optional: 'facultatif',
+        save: 'Enregistrer',
+        saving: 'Enregistrement…',
+        cancel: 'Annuler',
+        error: 'Impossible d’enregistrer la maladie.',
+        statusDraft: 'Brouillon',
+        statusNeedsReview: 'À vérifier',
+        statusVerified: 'Vérifié',
+      },
     },
   },
   en: {
@@ -527,6 +683,7 @@ export const translations: Record<Locale, TranslationResources> = {
         overview: 'Overview',
         organs: 'Organs & models',
         terms: 'Terms & translation',
+        diseases: 'Diseases',
         lessons: 'Lessons',
         cases: 'Cases & videos',
         quizzes: 'Quizzes',
@@ -646,6 +803,57 @@ export const translations: Record<Locale, TranslationResources> = {
         editHotspotTitle: 'Edit hotspot',
         termKeyHint: 'A term key from Terms, e.g. left_ventricle.',
         errorHotspot: 'Could not save the hotspot.',
+      },
+      diseases: {
+        newDisease: 'New disease',
+        search: 'Search diseases…',
+        status: 'Status',
+        all: 'All',
+        empty: 'No diseases found.',
+        edit: 'Edit',
+        page: 'Page',
+        previous: 'Previous',
+        next: 'Next',
+        colKey: 'Key',
+        colTerm: 'Disease term',
+        colModel: 'Model',
+        colStages: 'Stages',
+        colStatus: 'Status',
+        createTitle: 'New disease',
+        editTitle: 'Edit disease',
+        key: 'Key (snake_case)',
+        keyHint: 'Lowercase, e.g. myocardial_infarction. Cannot be changed later.',
+        termKey: 'Disease term key',
+        termKeyHint: 'A term key with category "disease", e.g. myocardial_infarction.',
+        modelKey: 'Model key',
+        modelKeyHint: 'The model these stages are shown on, e.g. heart.',
+        icd11Code: 'ICD-11 code',
+        icd11Uri: 'ICD-11 URI',
+        symptoms: 'Symptoms',
+        symptomsHint: 'Term keys separated by commas (category "symptom").',
+        stages: 'Stages',
+        noStages: 'No stages yet.',
+        addStage: 'Add stage',
+        stageKey: 'Stage key',
+        stageLabelTermKey: 'Label term key',
+        highlightMeshes: 'Highlight meshes (comma separated)',
+        vesselNarrowing: 'Vessel narrowing (0–1)',
+        materialOverrides: 'Material overrides (JSON)',
+        materialOverridesHint: 'Optional Three.js material params as JSON.',
+        removeStage: 'Remove',
+        videos: 'Videos',
+        videosHint: 'Video ids separated by commas.',
+        quizId: 'Quiz id',
+        publish: 'Publish',
+        unpublish: 'Unpublish',
+        optional: 'optional',
+        save: 'Save',
+        saving: 'Saving…',
+        cancel: 'Cancel',
+        error: 'Could not save the disease.',
+        statusDraft: 'Draft',
+        statusNeedsReview: 'Needs review',
+        statusVerified: 'Verified',
       },
     },
   },
