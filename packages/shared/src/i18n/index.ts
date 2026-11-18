@@ -25,6 +25,8 @@ export interface TranslationResources {
     interaction: { model: string; clinicalCase: string; video: string; quiz: string };
   };
   language: Record<Locale, string>;
+  // Short codes for the compact viewer switcher (ع | FR | EN). Constant across locales, like the wordmark.
+  languageShort: Record<Locale, string>;
   tabs: { home: string; learn: string; review: string; profile: string };
   // Term card (docs/01): AR title → FR → EN, plus the speaker button.
   term: { speak: string };
@@ -126,6 +128,7 @@ export const translations: Record<Locale, TranslationResources> = {
       },
     },
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
+    languageShort: { ar: 'ع', fr: 'FR', en: 'EN' },
     tabs: { home: 'الرئيسية', learn: 'تعلّم', review: 'مراجعة', profile: 'الملف' },
     term: { speak: 'استمع إلى النطق' },
     viewer: {
@@ -225,6 +228,7 @@ export const translations: Record<Locale, TranslationResources> = {
       },
     },
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
+    languageShort: { ar: 'ع', fr: 'FR', en: 'EN' },
     tabs: { home: 'Accueil', learn: 'Apprendre', review: 'Révision', profile: 'Profil' },
     term: { speak: 'Écouter la prononciation' },
     viewer: {
@@ -324,6 +328,7 @@ export const translations: Record<Locale, TranslationResources> = {
       },
     },
     language: { ar: 'العربية', fr: 'Français', en: 'English' },
+    languageShort: { ar: 'ع', fr: 'FR', en: 'EN' },
     tabs: { home: 'Home', learn: 'Learn', review: 'Review', profile: 'Profile' },
     term: { speak: 'Listen to pronunciation' },
     viewer: {

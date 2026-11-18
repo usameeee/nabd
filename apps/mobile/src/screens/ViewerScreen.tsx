@@ -4,15 +4,16 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
 import { darkColors, fontFamily, fontSize, radius, spacing } from '@nabd/shared';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import { useLocale } from '../i18n/LocaleProvider';
 import type { RootStackParamList } from '../navigation/RootNavigator';
 import { ViewerStage } from '../viewer/ViewerStage';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Viewer'>;
 
-// Full-screen 3D viewer (design/screens/02-viewer-anatomy.svg). T-032 ships the header + stage;
-// hotspots, language switcher and layer chips are T-033/T-034/T-035. Painted on the viewer bg,
-// so everything here uses the on-emerald (dark) palette.
+// Full-screen 3D viewer (design/screens/02-viewer-anatomy.svg). T-032/T-033/T-034 ship the header
+// + stage + hotspots + language switch; the layer chips are T-035. Painted on the viewer bg, so
+// everything here uses the on-emerald (dark) palette.
 export function ViewerScreen({ navigation }: Props) {
   const { rtl } = useLocale();
   const { t } = useTranslation();
@@ -51,6 +52,8 @@ export function ViewerScreen({ navigation }: Props) {
             {t('viewer.organSubtitle')}
           </Text>
         </View>
+
+        <LanguageSwitcher variant="viewer" />
       </View>
 
       <ViewerStage />
