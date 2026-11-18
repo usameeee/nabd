@@ -19,6 +19,7 @@ import { DiseaseChips } from './DiseaseChips';
 import { HotspotAnchors, type HotspotMarker } from './HotspotAnchors';
 import { HotspotOverlay } from './HotspotOverlay';
 import { LayerChips } from './LayerChips';
+import { PerfHud } from './PerfHud';
 import { StageSlider } from './StageSlider';
 import { StageVisuals } from './StageVisuals';
 import { TermSheet } from './TermSheet';
@@ -329,6 +330,10 @@ export function ViewerStage({ tab }: { tab: ViewerTab }) {
         onSelect={selectHotspot}
       />
       <TermSheet termKey={selected} onClose={closeSheet} />
+
+      {/* Dev-only frame-rate read-out (T-051): the measurement half of the real-device perf pass.
+          Stripped from release builds by the `__DEV__` gate. */}
+      {__DEV__ ? <PerfHud /> : null}
 
       {/* Diseases tab (T-041): disease picker above the model, stage slider + card pinned to the foot. */}
       {tab === 'diseases' && disease ? (

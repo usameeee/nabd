@@ -15,6 +15,9 @@ interface HotspotAnchorsProps {
   markers: Record<string, HotspotMarker>;
 }
 
+/** Sub-pixel moves are invisible; below this we skip the native write (px). */
+const MOVE_EPSILON = 0.5;
+
 /**
  * Invisible points parented to the re-framed model, so they inherit its origin/scale (and the rig's
  * rotation). Every frame each point is projected through the camera into screen pixels and pushed
@@ -23,6 +26,11 @@ interface HotspotAnchorsProps {
 export function HotspotAnchors({ hotspots, markers }: HotspotAnchorsProps) {
   const groups = useRef(new Map<string, THREE.Group>());
   const projected = useRef(new THREE.Vector3());
+  // Last value pushed to each marker, so an unchanged/sub-pixel projection costs nothing. The frame
+  // loop keeps running (the rig eases, gestures idle), so without this every hotspot would write to
+  // native 60×/s even when the model is perfectly still — pure bridge traffic on a low-end device.
+  const lastX = useRef(new Map<string, number>());
+  const lastY = useRef(new Map<string, number>());
 
   useFrame(({ camera, size }) => {
     const point = projected.current;
@@ -33,8 +41,24 @@ export function HotspotAnchors({ hotspots, markers }: HotspotAnchorsProps) {
 
       group.getWorldPosition(point);
       point.project(camera);
-      marker.x.setValue((point.x * 0.5 + 0.5) * size.width);
-      marker.y.setValue((-point.y * 0.5 + 0.5) * size.height);
+      const x = (point.x * 0.5 + 0.5) * size.width;
+      const y = (-point.y * 0.5 + 0.5) * size.height;
+
+      const prevX = lastX.current.get(hotspot.termKey);
+      const prevY = lastY.current.get(hotspot.termKey);
+      if (
+        prevX !== undefined &&
+        prevY !== undefined &&
+        Math.abs(prevX - x) < MOVE_EPSILON &&
+        Math.abs(prevY - y) < MOVE_EPSILON
+      ) {
+        continue;
+      }
+
+      lastX.current.set(hotspot.termKey, x);
+      lastY.current.set(hotspot.termKey, y);
+      marker.x.setValue(x);
+      marker.y.setValue(y);
     }
   });
 
