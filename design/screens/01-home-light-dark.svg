@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 392" width="760" height="784"><title>Nabd Home (light + dark)</title><style>@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500&amp;family=Reem+Kufi:wght@500&amp;family=Jost:wght@500&amp;display=swap');text{font-family:'IBM Plex Sans Arabic',sans-serif}</style>
+<g transform="translate(10,10)">
+<rect width="170" height="350" rx="24" fill="#F4EDE0" stroke="#D9C9A8"/>
+<circle cx="148" cy="34" r="12" fill="#C8553D"/>
+<text x="130" y="38" text-anchor="end" font-size="13" font-weight="500" fill="#0F3D30">مرحباً سارة</text>
+<rect x="14" y="24" width="56" height="20" rx="10" fill="#E3A64A"/>
+<text x="42" y="38" text-anchor="middle" font-size="11" font-weight="500" fill="#3B2A0A">420 XP</text>
+<rect x="12" y="62" width="146" height="96" rx="16" fill="#0F5B46"/>
+<text x="146" y="82" text-anchor="end" font-size="11" fill="#B9CFC5">درس اليوم</text>
+<text x="146" y="102" text-anchor="end" font-size="13" font-weight="500" fill="#F4EDE0">القلب والدورة الدموية</text>
+<rect x="24" y="114" width="122" height="6" rx="3" fill="#1F6652"/>
+<rect x="70" y="114" width="76" height="6" rx="3" fill="#E3A64A"/>
+<rect x="24" y="130" width="64" height="20" rx="10" fill="#C8553D"/>
+<text x="56" y="144" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF">تابع</text>
+<text x="158" y="182" text-anchor="end" font-size="13" font-weight="500" fill="#0F3D30">تعلّم بطريقتك</text>
+<rect x="88" y="194" width="70" height="50" rx="12" fill="#FBF7EF" stroke="#D9C9A8"/>
+<circle cx="123" cy="210" r="7" fill="#0F5B46"/>
+<text x="123" y="236" text-anchor="middle" font-size="11" fill="#0F3D30">مجسم 3D</text>
+<rect x="12" y="194" width="70" height="50" rx="12" fill="#FBF7EF" stroke="#D9C9A8"/>
+<circle cx="47" cy="210" r="7" fill="#C8553D"/>
+<text x="47" y="236" text-anchor="middle" font-size="11" fill="#0F3D30">حالة سريرية</text>
+<rect x="88" y="252" width="70" height="50" rx="12" fill="#FBF7EF" stroke="#D9C9A8"/>
+<circle cx="123" cy="268" r="7" fill="#E3A64A"/>
+<text x="123" y="294" text-anchor="middle" font-size="11" fill="#0F3D30">فيديو عملي</text>
+<rect x="12" y="252" width="70" height="50" rx="12" fill="#FBF7EF" stroke="#D9C9A8"/>
+<circle cx="47" cy="268" r="7" fill="#8A7A5C"/>
+<text x="47" y="294" text-anchor="middle" font-size="11" fill="#0F3D30">اختبار سريع</text>
+<rect x="10" y="308" width="150" height="34" rx="17" fill="#FBF7EF" stroke="#D9C9A8"/>
+<circle cx="141" cy="325" r="9" fill="#0F5B46"/>
+<circle cx="104" cy="325" r="7" fill="none" stroke="#D9C9A8" stroke-width="2"/>
+<circle cx="66" cy="325" r="7" fill="none" stroke="#D9C9A8" stroke-width="2"/>
+<circle cx="29" cy="325" r="7" fill="none" stroke="#D9C9A8" stroke-width="2"/>
+</g>
+<g transform="translate(200,10)">
+<rect width="170" height="350" rx="24" fill="#0C3B30"/>
+<circle cx="148" cy="34" r="12" fill="#C8553D"/>
+<text x="130" y="38" text-anchor="end" font-size="13" font-weight="500" fill="#F4EDE0">مرحباً سارة</text>
+<rect x="14" y="24" width="56" height="20" rx="10" fill="#E3A64A"/>
+<text x="42" y="38" text-anchor="middle" font-size="11" font-weight="500" fill="#3B2A0A">420 XP</text>
+<rect x="12" y="62" width="146" height="96" rx="16" fill="#F4EDE0"/>
+<text x="146" y="82" text-anchor="end" font-size="11" fill="#6B5D45">درس اليوم</text>
+<text x="146" y="102" text-anchor="end" font-size="13" font-weight="500" fill="#0F3D30">القلب والدورة الدموية</text>
+<rect x="24" y="114" width="122" height="6" rx="3" fill="#D9C9A8"/>
+<rect x="70" y="114" width="76" height="6" rx="3" fill="#0F5B46"/>
+<rect x="24" y="130" width="64" height="20" rx="10" fill="#C8553D"/>
+<text x="56" y="144" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF">تابع</text>
+<text x="158" y="182" text-anchor="end" font-size="13" font-weight="500" fill="#F4EDE0">تعلّم بطريقتك</text>
+<rect x="88" y="194" width="70" height="50" rx="12" fill="#124A3C" stroke="#1F6652"/>
+<circle cx="123" cy="210" r="7" fill="#E3A64A"/>
+<text x="123" y="236" text-anchor="middle" font-size="11" fill="#F4EDE0">مجسم 3D</text>
+<rect x="12" y="194" width="70" height="50" rx="12" fill="#124A3C" stroke="#1F6652"/>
+<circle cx="47" cy="210" r="7" fill="#C8553D"/>
+<text x="47" y="236" text-anchor="middle" font-size="11" fill="#F4EDE0">حالة سريرية</text>
+<rect x="88" y="252" width="70" height="50" rx="12" fill="#124A3C" stroke="#1F6652"/>
+<circle cx="123" cy="268" r="7" fill="#B9CFC5"/>
+<text x="123" y="294" text-anchor="middle" font-size="11" fill="#F4EDE0">فيديو عملي</text>
+<rect x="12" y="252" width="70" height="50" rx="12" fill="#124A3C" stroke="#1F6652"/>
+<circle cx="47" cy="268" r="7" fill="#8A7A5C"/>
+<text x="47" y="294" text-anchor="middle" font-size="11" fill="#F4EDE0">اختبار سريع</text>
+<rect x="10" y="308" width="150" height="34" rx="17" fill="#124A3C" stroke="#1F6652"/>
+<circle cx="141" cy="325" r="9" fill="#E3A64A"/>
+<circle cx="104" cy="325" r="7" fill="none" stroke="#1F6652" stroke-width="2"/>
+<circle cx="66" cy="325" r="7" fill="none" stroke="#1F6652" stroke-width="2"/>
+<circle cx="29" cy="325" r="7" fill="none" stroke="#1F6652" stroke-width="2"/>
+</g>
+<text x="95" y="382" text-anchor="middle" font-size="13" fill="#6B5D45">Açık mod (ana tema)</text>
+<text x="285" y="382" text-anchor="middle" font-size="13" fill="#6B5D45">Koyu mod</text>
+</svg>

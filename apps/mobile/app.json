@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Nabd",
+    "slug": "nabd",
+    "scheme": "nabd",
+    "version": "0.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.nabd.app"
+    },
+    "ios": {
+      "bundleIdentifier": "com.nabd.app",
+      "supportsTablet": true
+    }
+  }
+}

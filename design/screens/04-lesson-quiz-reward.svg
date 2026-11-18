@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 392" width="760" height="784"><title>Nabd lesson flow - quiz step and reward screen</title><style>@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500&amp;family=Reem+Kufi:wght@500&amp;family=Jost:wght@500&amp;display=swap');text{font-family:'IBM Plex Sans Arabic',sans-serif}</style>
+<g transform="translate(10,10)">
+<rect width="170" height="350" rx="24" fill="#F4EDE0" stroke="#D9C9A8"/>
+<circle cx="148" cy="28" r="11" fill="#FBF7EF" stroke="#D9C9A8"/>
+<path d="M143 23 L153 33 M153 23 L143 33" stroke="#6B5D45" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="30" y="24" width="100" height="8" rx="4" fill="#D9C9A8"/>
+<rect x="50" y="24" width="80" height="8" rx="4" fill="#0F5B46"/>
+<text x="158" y="56" text-anchor="end" font-size="11" fill="#6B5D45">الخطوة 4 من 5 · اختبار</text>
+<rect x="12" y="66" width="146" height="66" rx="14" fill="#FBF7EF" stroke="#D9C9A8"/>
+<circle cx="36" cy="99" r="20" fill="#0C3B30"/>
+<g transform="translate(36,101) scale(0.38) translate(-120,-150)">
+<path d="M120 190 C70 160 70 110 100 105 C112 103 120 112 120 118 C120 112 128 103 140 105 C170 110 170 160 120 190 Z" fill="#C8553D"/>
+<path d="M92 135 C84 150 92 172 114 182 C122 168 118 148 108 134 C102 130 96 131 92 135 Z" fill="none" stroke="#E3A64A" stroke-width="4"/>
+</g>
+<text x="150" y="88" text-anchor="end" font-size="12" font-weight="500" fill="#0F3D30">أي حجرة تضخ</text>
+<text x="150" y="104" text-anchor="end" font-size="12" font-weight="500" fill="#0F3D30">الدم المؤكسج</text>
+<text x="150" y="120" text-anchor="end" font-size="12" font-weight="500" fill="#0F3D30">إلى الجسم كله؟</text>
+<rect x="12" y="142" width="146" height="40" rx="12" fill="#F3D5CD" stroke="#C8553D" stroke-width="1.5"/>
+<text x="150" y="160" text-anchor="end" font-size="13" fill="#8F3522">الأذين الأيمن</text>
+<text x="150" y="174" text-anchor="end" font-size="11" fill="#8F3522">Oreillette droite</text>
+<circle cx="28" cy="162" r="9" fill="#C8553D"/>
+<path d="M24 158 L32 166 M32 158 L24 166" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="12" y="188" width="146" height="40" rx="12" fill="#DCEBE3" stroke="#0F5B46" stroke-width="2"/>
+<text x="150" y="206" text-anchor="end" font-size="13" font-weight="500" fill="#0F5B46">البطين الأيسر</text>
+<text x="150" y="220" text-anchor="end" font-size="11" fill="#0F5B46">Ventricule gauche</text>
+<circle cx="28" cy="208" r="9" fill="#0F5B46"/>
+<path d="M24 208 L27 211 L32 205" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="12" y="234" width="146" height="40" rx="12" fill="#FBF7EF" stroke="#D9C9A8"/>
+<text x="150" y="252" text-anchor="end" font-size="13" fill="#0F3D30">الأذين الأيسر</text>
+<text x="150" y="266" text-anchor="end" font-size="11" fill="#6B5D45">Oreillette gauche</text>
+<path d="M0 282 H170 V326 Q170 350 146 350 H24 Q0 350 0 326 Z" fill="#DCEBE3"/>
+<text x="156" y="304" text-anchor="end" font-size="14" font-weight="500" fill="#0F5B46">ممتاز! +20 XP</text>
+<text x="156" y="322" text-anchor="end" font-size="11" fill="#0F5B46">عضلته أسمك لضخ الدم للجسم</text>
+<rect x="14" y="304" width="56" height="30" rx="15" fill="#C8553D"/>
+<text x="42" y="323" text-anchor="middle" font-size="12" font-weight="500" fill="#FFFFFF">التالي</text>
+</g>
+<g transform="translate(200,10)">
+<rect width="170" height="350" rx="24" fill="#0F5B46"/>
+<path d="M45 150 V92 C45 64 70 54 85 16 C100 54 125 64 125 92 V150" fill="none" stroke="#E3A64A" stroke-width="1.5"/>
+<path d="M53 150 V94 C53 70 74 60 85 32 C96 60 117 70 117 94 V150" fill="none" stroke="#1F6652" stroke-width="1.2"/>
+<circle cx="85" cy="104" r="28" fill="#E3A64A"/>
+<g transform="translate(85,106) scale(0.34) translate(-120,-150)">
+<path d="M120 190 C70 160 70 110 100 105 C112 103 120 112 120 118 C120 112 128 103 140 105 C170 110 170 160 120 190 Z" fill="#C8553D"/>
+</g>
+<polygon points="55,160 57.4,165.5 62.6,165.5 58.5,169 60,174.5 55,171.2 50,174.5 51.5,169 47.4,165.5 52.6,165.5" fill="#E3A64A"/>
+<polygon points="85,156 87.4,161.5 92.6,161.5 88.5,165 90,170.5 85,167.2 80,170.5 81.5,165 77.4,161.5 82.6,161.5" fill="#E3A64A"/>
+<polygon points="115,160 117.4,165.5 122.6,165.5 118.5,169 120,174.5 115,171.2 110,174.5 111.5,169 107.4,165.5 112.6,165.5" fill="#E3A64A"/>
+<text x="85" y="200" text-anchor="middle" font-size="16" font-weight="500" fill="#F4EDE0">أحسنت يا سارة!</text>
+<text x="85" y="218" text-anchor="middle" font-size="11" fill="#B9CFC5">درس القلب مكتمل</text>
+<rect x="12" y="228" width="46" height="44" rx="12" fill="#1F6652"/>
+<text x="35" y="247" text-anchor="middle" font-size="14" font-weight="500" fill="#E3A64A">+60</text>
+<text x="35" y="263" text-anchor="middle" font-size="11" fill="#B9CFC5">نقاط</text>
+<rect x="62" y="228" width="46" height="44" rx="12" fill="#1F6652"/>
+<text x="85" y="247" text-anchor="middle" font-size="14" font-weight="500" fill="#F4EDE0">6</text>
+<text x="85" y="263" text-anchor="middle" font-size="11" fill="#B9CFC5">مصطلحات</text>
+<rect x="112" y="228" width="46" height="44" rx="12" fill="#1F6652"/>
+<text x="135" y="247" text-anchor="middle" font-size="14" font-weight="500" fill="#F4EDE0">5</text>
+<text x="135" y="263" text-anchor="middle" font-size="11" fill="#B9CFC5">سلسلة</text>
+<rect x="12" y="284" width="146" height="34" rx="17" fill="#C8553D"/>
+<text x="85" y="305" text-anchor="middle" font-size="13" font-weight="500" fill="#FFFFFF">الدرس التالي</text>
+<text x="85" y="338" text-anchor="middle" font-size="12" fill="#B9CFC5">راجع المصطلحات</text>
+</g>
+<text x="95" y="382" text-anchor="middle" font-size="13" fill="#6B5D45">Quiz adımı</text>
+<text x="285" y="382" text-anchor="middle" font-size="13" fill="#6B5D45">Ders tamamlandı</text>
+</svg>

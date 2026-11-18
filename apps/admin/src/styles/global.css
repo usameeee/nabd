@@ -1,0 +1,430 @@
+/* All colors, fonts, spacing and radii come from the shared design tokens,
+   applied as CSS variables by src/theme/applyTokens.ts. Never hardcode them here. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family-latin-body);
+  font-size: var(--font-body);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---------- Login ---------- */
+.login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-xl);
+}
+
+.login__card {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--space-xxl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.login__brand {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.login__wordmark {
+  margin: 0;
+  font-family: var(--font-family-arabic-display);
+  font-size: var(--font-display);
+  color: var(--color-primary);
+}
+
+.login__brand-label {
+  font-family: var(--font-family-latin-display);
+  font-size: var(--font-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-reward);
+}
+
+.login__title {
+  margin: var(--space-xl) 0 var(--space-xs);
+  font-size: var(--font-heading);
+}
+
+.login__subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.login__form {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.field__label {
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+.field__input {
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+  font: inherit;
+}
+
+.field__input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.login__error {
+  margin: 0;
+  color: var(--color-danger-text);
+  font-size: var(--font-body);
+}
+
+.button {
+  min-height: 44px;
+  padding: 0 var(--space-xl);
+  border-radius: var(--radius-button);
+  font-family: var(--font-family-arabic-body);
+  font-size: var(--font-title);
+}
+
+.button--primary {
+  background: var(--color-action);
+  border: 1px solid var(--color-action);
+  color: var(--color-bg);
+}
+
+.button--secondary {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* ---------- Shell ---------- */
+.shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.shell__sidebar {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--color-primary);
+}
+
+.shell__brand {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.shell__wordmark {
+  font-family: var(--font-family-arabic-display);
+  font-size: var(--font-heading);
+  color: var(--color-on-primary);
+}
+
+.shell__brand-label {
+  font-family: var(--font-family-latin-display);
+  font-size: var(--font-caption);
+  color: var(--color-reward);
+}
+
+.nav {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.nav__item {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-radius: var(--radius-button);
+  background: transparent;
+  color: var(--color-on-primary-muted);
+  font: inherit;
+  font-size: var(--font-body);
+  text-align: start;
+}
+
+.nav__item--active {
+  background: var(--color-on-primary-surface);
+  color: var(--color-on-primary);
+  font-weight: 500;
+}
+
+.shell__main {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+}
+
+.shell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.shell__title {
+  margin: 0;
+  font-size: var(--font-heading);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.card__muted {
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Terms ---------- */
+.terms {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.stat {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.stat__value {
+  font-family: var(--font-family-latin-display);
+  font-size: var(--font-display);
+  color: var(--color-primary);
+}
+
+.stat__label {
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.toolbar__search {
+  flex: 1 1 220px;
+}
+
+.toolbar__action {
+  margin-inline-start: auto;
+}
+
+/* Filter "chip" — mirrors the mockup pills while staying a native select. */
+.chip,
+.toolbar__select {
+  min-height: 44px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+.card--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-caption);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-align: start;
+}
+
+.table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-body);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table__ar {
+  font-family: var(--font-family-arabic-body);
+  font-size: var(--font-title);
+}
+
+.table__mono {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+.table__actions {
+  text-align: end;
+  white-space: nowrap;
+}
+
+.table__empty {
+  padding: var(--space-xxl);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.link {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  font: inherit;
+  text-decoration: underline;
+}
+
+.pill {
+  display: inline-block;
+  padding: 2px var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+.pill--success {
+  border-color: transparent;
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.pill--warning {
+  border-color: transparent;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.pager__info {
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+.pager__actions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+/* ---------- Dialog ---------- */
+.dialog {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-xl);
+  /* Translucent backdrop derived from a token — no hardcoded color. */
+  background: color-mix(in srgb, var(--color-viewer-bg) 60%, transparent);
+}
+
+.dialog__card {
+  display: grid;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow: auto;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.dialog__title {
+  margin: 0;
+  font-size: var(--font-heading);
+}
+
+.dialog__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+.field__hint {
+  font-size: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+.field__error {
+  margin: 0;
+  font-size: var(--font-body);
+  color: var(--color-danger-text);
+}
+
+.field__input--mono {
+  font-family: var(--font-family-mono);
+}

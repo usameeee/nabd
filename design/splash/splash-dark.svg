@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 500" width="1080" height="2454">
+<style>@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500&amp;family=IBM+Plex+Sans+Arabic:wght@400&amp;family=Jost:wght@500&amp;display=swap');</style>
+<rect width="220" height="500" fill="#0F4A3C"/>
+<g transform="translate(-80,-10)">
+<path d="M104 500 V475 C104 458 120 450 124 440 C128 450 144 458 144 475 V500 M148 500 V475 C148 458 164 450 168 440 C172 450 188 458 188 475 V500 M192 500 V475 C192 458 208 450 212 440 C216 450 232 458 232 475 V500 M236 500 V475 C236 458 252 450 256 440 C260 450 276 458 276 475 V500" fill="none" stroke="#1F6652" stroke-width="2"/>
+<path d="M114 500 V480 C114 468 124 462 124 455 C124 462 134 468 134 480 V500 M158 500 V480 C158 468 168 462 168 455 C168 462 178 468 178 480 V500 M202 500 V480 C202 468 212 462 212 455 C212 462 222 468 222 480 V500 M246 500 V480 C246 468 256 462 256 455 C256 462 266 468 266 480 V500" fill="none" stroke="#E3A64A" stroke-width="1.2" opacity="0.6"/>
+<path d="M120 270 V190 C120 150 160 130 190 60 C220 130 260 150 260 190 V270" fill="none" stroke="#E3A64A" stroke-width="2"/>
+<path d="M130 270 V193 C130 160 166 140 190 82 C214 140 250 160 250 193 V270" fill="none" stroke="#1F6652" stroke-width="1.5"/>
+<g transform="translate(130,165)">
+<path d="M16 62 L28 62 L34 42 L41 78 L47 62 C52 82 65 92 78 92 C96 92 106 78 106 54" fill="none" stroke="#F4EDE0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="78" cy="32" r="6.5" fill="#E3A64A"/>
+</g>
+<text x="190" y="332" text-anchor="middle" font-size="44" fill="#F4EDE0" font-family="'Reem Kufi', sans-serif" font-weight="500">نبض</text>
+<text x="190" y="358" text-anchor="middle" font-size="16" fill="#E3A64A" font-family="Jost, sans-serif" font-weight="500">Nabd</text>
+<text x="190" y="394" text-anchor="middle" font-size="16" fill="#B9CFC5" font-family="'IBM Plex Sans Arabic', sans-serif">تعلّم الطب بالتفاعل</text>
+</g>
+</svg>
