@@ -3,15 +3,32 @@
     "name": "Nabd",
     "slug": "nabd",
     "scheme": "nabd",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#F4EDE0",
+      "resizeMode": "contain"
+    },
     "android": {
-      "package": "com.nabd.app"
+      "package": "com.nabd.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0F5B46"
+      }
     },
     "ios": {
       "bundleIdentifier": "com.nabd.app",
+      "buildNumber": "1",
       "supportsTablet": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4f4d6e72-4aba-425e-a6db-61d79e1c45d9"
+      }
+    },
+    "owner": "usame.ml"
   }
 }
