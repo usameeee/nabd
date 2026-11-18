@@ -13,7 +13,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber/native';
 import { useTranslation } from 'react-i18next';
 import * as THREE from 'three';
 import { darkColors, fontFamily, fontSize, radius, spacing } from '@nabd/shared';
-import { HeartModel, type ModelFrame } from './HeartModel';
+import { DetailedModelPreloader, HeartModel, type ModelFrame } from './HeartModel';
 import { HotspotAnchors, type HotspotMarker } from './HotspotAnchors';
 import { HotspotOverlay } from './HotspotOverlay';
 import { LayerChips } from './LayerChips';
@@ -100,9 +100,12 @@ export function ViewerStage() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const [ready, setReady] = useState(false);
+  const [detailed, setDetailed] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [layer, setLayer] = useState<LayerKey>(HEART_LAYERS[0]?.key ?? 'muscles');
   const markReady = useCallback(() => setReady(true), []);
+  // Flipped by the preloader once the detailed LOD is parsed, to swap it in without a re-suspend.
+  const markDetailed = useCallback(() => setDetailed(true), []);
 
   const motion = useRef<Motion>({
     rotX: 0,
@@ -223,11 +226,18 @@ export function ViewerStage() {
         <directionalLight position={[-3, -2, -3]} intensity={0.9} />
         <Suspense fallback={null}>
           <Rig motion={motion}>
-            <HeartModel onFrame={handleFrame}>
+            <HeartModel source={detailed ? 'detailed' : 'light'} onFrame={handleFrame}>
               <HotspotAnchors hotspots={visibleHotspots} markers={markers} />
             </HeartModel>
           </Rig>
           <Ready onReady={markReady} />
+          {/* Lazy detailed LOD (T-037): only starts after the light model is on screen, then swaps it
+              in from cache. Its own boundary keeps the heavy parse from blanking the visible model. */}
+          {ready && !detailed ? (
+            <Suspense fallback={null}>
+              <DetailedModelPreloader onLoaded={markDetailed} />
+            </Suspense>
+          ) : null}
         </Suspense>
       </Canvas>
 
