@@ -9,6 +9,8 @@ import { Button } from '../components/Button';
 import { ProgressBar } from '../components/ProgressBar';
 import { useLocale } from '../i18n/LocaleProvider';
 import { HEART_LESSON, type RunnerStep } from '../lesson/lessons';
+import { QuizStep } from '../lesson/QuizStep';
+import { QUIZ_QUESTIONS } from '../lesson/quizzes';
 import type { RootStackParamList } from '../navigation/RootNavigator';
 import { useTheme } from '../theme/ThemeProvider';
 
@@ -76,23 +78,27 @@ function StepBody({ step, onOpenModel }: { step: RunnerStep; onOpenModel: () => 
         </>
       ) : null}
 
-      {step.type === 'quiz' ? (
-        <Text style={[styles.body, { color: colors.textSecondary, textAlign }]}>
-          {t('lesson.quizSoon')}
-        </Text>
+      {step.type === 'case' ? (
+        <>
+          <Text style={[styles.cardTitle, { color: colors.text, textAlign }]}>{lead(step.title)}</Text>
+          <Text style={[styles.body, { color: colors.textSecondary, textAlign }]}>{lead(step.body)}</Text>
+        </>
       ) : null}
     </View>
   );
 }
 
 // Lesson runner (T-043, design/screens/04-lesson-quiz-reward.svg): plays a lesson's steps under a
-// segmented progress bar with Next/Previous. The quiz step's options land in T-044 and the reward
-// screen (XP, streak, terms) in T-045 — the last step's button therefore just exits for now.
+// segmented progress bar with Next/Previous. The quiz step (QuizStep, T-044) reveals option states
+// and an explanation; the reward screen (XP, streak, terms) lands in T-045 — the last step's
+// button therefore just exits for now.
 export function LessonScreen({ navigation }: Props) {
   const { colors } = useTheme();
   const { rtl } = useLocale();
   const { t } = useTranslation();
   const [index, setIndex] = useState(0);
+  // Whether the current quiz step has an answer (T-044) — holds "Next" back until it does.
+  const [quizAnswered, setQuizAnswered] = useState(false);
 
   const lesson = HEART_LESSON;
   const total = lesson.steps.length;
@@ -102,6 +108,13 @@ export function LessonScreen({ navigation }: Props) {
 
   const textAlign: 'right' | 'left' = rtl ? 'right' : 'left';
   const isLast = index === total - 1;
+  const question = step.type === 'quiz' ? QUIZ_QUESTIONS[step.quizId] : undefined;
+
+  // Moves to a step and resets the quiz gate so a revisited quiz starts fresh.
+  const go = (next: number) => {
+    setQuizAnswered(false);
+    setIndex(Math.max(0, Math.min(total - 1, next)));
+  };
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.bg }]} edges={['top', 'bottom']}>
@@ -140,21 +153,28 @@ export function LessonScreen({ navigation }: Props) {
         </Text>
 
         <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
-          <StepBody step={step} onOpenModel={() => navigation.navigate('Viewer')} />
+          {question ? (
+            // `key` remounts QuizStep per step so its selected option resets.
+            <QuizStep
+              key={index}
+              question={question}
+              xp={step.xp}
+              onAnswer={() => setQuizAnswered(true)}
+            />
+          ) : (
+            <StepBody step={step} onOpenModel={() => navigation.navigate('Viewer')} />
+          )}
         </ScrollView>
 
         <View style={styles.footer}>
           <View style={styles.footerSecondary}>
-            <Button
-              label={t('lesson.previous')}
-              variant="secondary"
-              onPress={() => setIndex((value) => Math.max(0, value - 1))}
-            />
+            <Button label={t('lesson.previous')} variant="secondary" onPress={() => go(index - 1)} />
           </View>
           <View style={styles.footerPrimary}>
             <Button
               label={isLast ? t('lesson.finish') : t('lesson.next')}
-              onPress={() => (isLast ? navigation.goBack() : setIndex((value) => value + 1))}
+              disabled={step.type === 'quiz' && !quizAnswered}
+              onPress={() => (isLast ? navigation.goBack() : go(index + 1))}
             />
           </View>
         </View>

@@ -63,7 +63,14 @@ export interface TranslationResources {
     openModel: string;
     watchVideo: string;
     videoSoon: string;
-    quizSoon: string;
+    // Quiz step (T-044): option feedback + explanation. Wrong answers are NOT punished (no lives) —
+    // the runner only holds "Next" back until an option is picked.
+    quiz: {
+      correct: string;
+      wrong: string;
+      /** "+{{xp}} XP" — XP is a fixed unit, identical in every locale. */
+      xpReward: string;
+    };
   };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
@@ -346,7 +353,11 @@ export const translations: Record<Locale, TranslationResources> = {
       openModel: 'افتح المجسّم ثلاثي الأبعاد',
       watchVideo: 'شاهد الفيديو',
       videoSoon: 'تشغيل الفيديو قيد الإعداد.',
-      quizSoon: 'سؤال الاختبار قادم قريباً.',
+      quiz: {
+        correct: 'ممتاز!',
+        wrong: 'ليس تماماً',
+        xpReward: '+{{xp}} XP',
+      },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -636,7 +647,11 @@ export const translations: Record<Locale, TranslationResources> = {
       openModel: 'Ouvrir le modèle 3D',
       watchVideo: 'Regarder la vidéo',
       videoSoon: 'La lecture vidéo arrive bientôt.',
-      quizSoon: 'La question du quiz arrive bientôt.',
+      quiz: {
+        correct: 'Parfait !',
+        wrong: 'Pas tout à fait',
+        xpReward: '+{{xp}} XP',
+      },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -926,7 +941,11 @@ export const translations: Record<Locale, TranslationResources> = {
       openModel: 'Open the 3D model',
       watchVideo: 'Watch the video',
       videoSoon: 'Video playback is coming soon.',
-      quizSoon: 'The quiz question is coming soon.',
+      quiz: {
+        correct: 'Excellent!',
+        wrong: 'Not quite',
+        xpReward: '+{{xp}} XP',
+      },
     },
     admin: {
       brandLabel: 'Nabd Admin',
