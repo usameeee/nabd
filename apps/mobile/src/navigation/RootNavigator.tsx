@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../screens/HomeScreen';
 import { LessonRewardScreen } from '../screens/LessonRewardScreen';
 import { LessonScreen } from '../screens/LessonScreen';
+import { ReviewScreen } from '../screens/ReviewScreen';
 import { ViewerScreen } from '../screens/ViewerScreen';
 import { useTheme } from '../theme/ThemeProvider';
 
@@ -13,6 +14,8 @@ export type RootStackParamList = {
   Lesson: { lessonKey: string };
   /** What a finished lesson earned (T-045); it replaces the runner in the stack. */
   LessonReward: { xp: number; terms: number; streak: number };
+  /** Spaced-repetition review of the collected terms (T-046). */
+  Review: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,6 +45,7 @@ export function RootNavigator() {
         <Stack.Screen name="Viewer" component={ViewerScreen} />
         <Stack.Screen name="Lesson" component={LessonScreen} />
         <Stack.Screen name="LessonReward" component={LessonRewardScreen} />
+        <Stack.Screen name="Review" component={ReviewScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

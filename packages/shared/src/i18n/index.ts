@@ -84,6 +84,23 @@ export interface TranslationResources {
       review: string;
     };
   };
+  // Spaced-repetition review (T-046): the collected terms come back on a Leitner schedule of
+  // boxes 1-5. Cards are tap-to-reveal flashcards — "again" drops a term to box 1, "got it" moves
+  // it up a box (docs/03 termCollection: box / nextReviewAt / correctCount / wrongCount).
+  review: {
+    title: string;
+    /** "{{n}} terms to review" — how many terms are due right now. */
+    due: string;
+    tapToReveal: string;
+    showAnswer: string;
+    again: string;
+    gotIt: string;
+    /** "Box {{box}} of {{total}}" — where the term sits in the 1-5 schedule. */
+    boxOf: string;
+    empty: string;
+    done: string;
+    back: string;
+  };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
     brandLabel: string;
@@ -379,6 +396,18 @@ export const translations: Record<Locale, TranslationResources> = {
         next: 'الدرس التالي',
         review: 'راجع المصطلحات',
       },
+    },
+    review: {
+      title: 'مراجعة',
+      due: '{{n}} مصطلحات للمراجعة',
+      tapToReveal: 'اضغط لكشف الإجابة',
+      showAnswer: 'أظهر الإجابة',
+      again: 'أعِد',
+      gotIt: 'أعرفها',
+      boxOf: 'المستوى {{box}} من {{total}}',
+      empty: 'لا يوجد مصطلحات للمراجعة حالياً',
+      done: 'أتممت المراجعة!',
+      back: 'رجوع إلى الرئيسية',
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -683,6 +712,18 @@ export const translations: Record<Locale, TranslationResources> = {
         review: 'Réviser les termes',
       },
     },
+    review: {
+      title: 'Révision',
+      due: '{{n}} termes à réviser',
+      tapToReveal: 'Touchez pour révéler',
+      showAnswer: 'Voir la réponse',
+      again: 'À revoir',
+      gotIt: 'Je sais',
+      boxOf: 'Boîte {{box}} sur {{total}}',
+      empty: 'Rien à réviser pour le moment',
+      done: 'Révision terminée !',
+      back: "Retour à l'accueil",
+    },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
@@ -985,6 +1026,18 @@ export const translations: Record<Locale, TranslationResources> = {
         next: 'Next lesson',
         review: 'Review terms',
       },
+    },
+    review: {
+      title: 'Review',
+      due: '{{n}} terms to review',
+      tapToReveal: 'Tap to reveal',
+      showAnswer: 'Show answer',
+      again: 'Again',
+      gotIt: 'Got it',
+      boxOf: 'Box {{box}} of {{total}}',
+      empty: 'Nothing to review right now',
+      done: 'Review complete',
+      back: 'Back to home',
     },
     admin: {
       brandLabel: 'Nabd Admin',

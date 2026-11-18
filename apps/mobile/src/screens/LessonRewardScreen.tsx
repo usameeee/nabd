@@ -78,8 +78,8 @@ export function LessonRewardScreen({ navigation, route }: Props) {
         <Button label={t('lesson.reward.next')} onPress={() => navigation.popToTop()} />
       </View>
 
-      {/* Spaced-repetition review is T-046 — the link stays inert until it exists. */}
-      <Pressable accessibilityRole="button" accessibilityState={{ disabled: true }} disabled>
+      {/* Spaced-repetition review (T-046): opens the collected terms as flashcards. */}
+      <Pressable accessibilityRole="button" onPress={() => navigation.navigate('Review')}>
         <Text style={[styles.review, { color: muted }]}>{t('lesson.reward.review')}</Text>
       </Pressable>
     </View>
