@@ -7,13 +7,17 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { ActivityIndicator, PanResponder, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Animated, PanResponder, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { Canvas, useFrame, useThree } from '@react-three/fiber/native';
 import { useTranslation } from 'react-i18next';
 import * as THREE from 'three';
 import { darkColors, fontFamily, fontSize, radius, spacing } from '@nabd/shared';
-import { HeartModel } from './HeartModel';
+import { HeartModel, type ModelFrame } from './HeartModel';
+import { HotspotAnchors, type HotspotMarker } from './HotspotAnchors';
+import { HotspotOverlay } from './HotspotOverlay';
+import { TermSheet } from './TermSheet';
+import { HEART_HOTSPOTS } from './hotspots';
 import { useTheme } from '../theme/ThemeProvider';
 
 /** Camera rig state. Only mutated through a ref so gestures never re-render React. */
@@ -36,12 +40,15 @@ interface TouchPoint {
 }
 
 const START_DIST = 3.2;
+const FOCUS_DIST = 2.4;
 const ZOOM_MIN = 2;
 const ZOOM_MAX = 7;
 const PITCH_LIMIT = Math.PI / 3;
 const ROTATE_SPEED = 0.01;
 // Frame-rate independent easing: fraction of the remaining gap closed per rendered frame.
 const SMOOTHING = 0.16;
+// Park unprojected markers off-screen so they don't flash at the top-left corner.
+const OFFSCREEN = -1000;
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
@@ -91,6 +98,7 @@ export function ViewerStage() {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const [ready, setReady] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
   const markReady = useCallback(() => setReady(true), []);
 
   const motion = useRef<Motion>({
@@ -102,13 +110,44 @@ export function ViewerStage() {
     targetDist: START_DIST,
   });
   const last = useRef({ x: 0, y: 0, pinch: 0, count: 0 });
+  const frame = useRef<ModelFrame | null>(null);
+  const handleFrame = useCallback((next: ModelFrame) => {
+    frame.current = next;
+  }, []);
 
-  // One-finger drag orbits, two-finger pinch zooms. The responder captures from the parent
-  // so the Canvas never claims the gesture.
+  // One pair of animated values per hotspot — created once, written by the R3F anchors.
+  const markers = useMemo(() => {
+    const map: Record<string, HotspotMarker> = {};
+    for (const hotspot of HEART_HOTSPOTS) {
+      map[hotspot.termKey] = { x: new Animated.Value(OFFSCREEN), y: new Animated.Value(OFFSCREEN) };
+    }
+    return map;
+  }, []);
+
+  // Turn the model so the tapped hotspot faces the camera, then open its term sheet.
+  const selectHotspot = useCallback((termKey: string) => {
+    const hotspot = HEART_HOTSPOTS.find((item) => item.termKey === termKey);
+    const center = frame.current?.center;
+    if (hotspot && center) {
+      const dx = hotspot.position[0] - center.x;
+      const dy = hotspot.position[1] - center.y;
+      const dz = hotspot.position[2] - center.z;
+      const m = motion.current;
+      m.targetRotY = Math.atan2(-dx, Math.hypot(dy, dz));
+      m.targetRotX = clamp(Math.atan2(dy, dz), -PITCH_LIMIT, PITCH_LIMIT);
+      m.targetDist = FOCUS_DIST;
+    }
+    setSelected(termKey);
+  }, []);
+
+  const closeSheet = useCallback(() => setSelected(null), []);
+
+  // One-finger drag orbits, two-finger pinch zooms. Capture is deferred to the move phase so taps
+  // still reach the hotspots, while drags and pinches are taken over from the Canvas/R3F responder.
   const panResponder = useMemo(
     () =>
       PanResponder.create({
-        onStartShouldSetPanResponderCapture: () => true,
+        onStartShouldSetPanResponderCapture: () => false,
         onMoveShouldSetPanResponderCapture: () => true,
         onPanResponderGrant: (event) => {
           const touches = event.nativeEvent.touches;
@@ -174,7 +213,9 @@ export function ViewerStage() {
         <directionalLight position={[-3, -2, -3]} intensity={0.9} />
         <Suspense fallback={null}>
           <Rig motion={motion}>
-            <HeartModel />
+            <HeartModel onFrame={handleFrame}>
+              <HotspotAnchors hotspots={HEART_HOTSPOTS} markers={markers} />
+            </HeartModel>
           </Rig>
           <Ready onReady={markReady} />
         </Suspense>
@@ -211,6 +252,14 @@ export function ViewerStage() {
           </View>
         </View>
       </View>
+
+      <HotspotOverlay
+        hotspots={HEART_HOTSPOTS}
+        markers={markers}
+        selectedKey={selected}
+        onSelect={selectHotspot}
+      />
+      <TermSheet termKey={selected} onClose={closeSheet} />
     </View>
   );
 }

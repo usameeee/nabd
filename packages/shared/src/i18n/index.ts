@@ -36,6 +36,7 @@ export interface TranslationResources {
     organSubtitle: string;
     loading: string;
     hint: string;
+    close: string;
   };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
@@ -133,6 +134,7 @@ export const translations: Record<Locale, TranslationResources> = {
       organSubtitle: 'Cœur · Heart',
       loading: 'جارٍ تحميل المجسّم…',
       hint: 'اسحب للتدوير · اقرص للتقريب',
+      close: 'إغلاق',
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -231,6 +233,7 @@ export const translations: Record<Locale, TranslationResources> = {
       organSubtitle: 'Cœur · Heart',
       loading: 'Chargement du modèle…',
       hint: 'Glisser pour tourner · Pincer pour zoomer',
+      close: 'Fermer',
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -329,6 +332,7 @@ export const translations: Record<Locale, TranslationResources> = {
       organSubtitle: 'Cœur · Heart',
       loading: 'Loading model…',
       hint: 'Drag to rotate · Pinch to zoom',
+      close: 'Close',
     },
     admin: {
       brandLabel: 'Nabd Admin',

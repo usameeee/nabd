@@ -8,6 +8,7 @@ import {
   radius,
   spacing,
   type TermSource,
+  type ThemeColors,
 } from '@nabd/shared';
 import { useLocale } from '../i18n/LocaleProvider';
 import { useTheme } from '../theme/ThemeProvider';
@@ -22,12 +23,15 @@ interface TermCardProps {
   source?: TermSource;
   /** Audio is a placeholder for now (T-025); wire it when the audio field is served. */
   onSpeak?: () => void;
+  /** Overrides the palette — the viewer sheet is cream on the emerald panel, so it always passes the light tokens. */
+  colors?: ThemeColors;
 }
 
 // TermCard (docs/01): AR title (large, emerald) → FR line → EN line + speaker (clay circle).
 // All three languages always show — the switcher only changes which layer is emphasized.
-export function TermCard({ ar, fr, en, latin, source, onSpeak }: TermCardProps) {
-  const { colors } = useTheme();
+export function TermCard({ ar, fr, en, latin, source, onSpeak, colors: override }: TermCardProps) {
+  const { colors: themeColors } = useTheme();
+  const colors = override ?? themeColors;
   const { rtl } = useLocale();
   const { t } = useTranslation();
 
