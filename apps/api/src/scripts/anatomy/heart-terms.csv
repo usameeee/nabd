@@ -1,0 +1,31 @@
+key,ar,fr,en,latin
+heart,القلب,cœur,heart,Cor
+right_atrium,الأذين الأيمن,atrium droit,right atrium,Atrium dextrum
+left_atrium,الأذين الأيسر,atrium gauche,left atrium,Atrium sinistrum
+right_ventricle,البطين الأيمن,ventricule droit,right ventricle,Ventriculus dexter
+left_ventricle,البطين الأيسر,ventricule gauche,left ventricle,Ventriculus sinister
+interventricular_septum,الحاجز بين البطينين,septum interventriculaire,interventricular septum,Septum interventriculare
+interatrial_septum,الحاجز بين الأذينين,septum interatrial,interatrial septum,Septum interatriale
+aorta,الأبهر,aorte,aorta,Aorta
+ascending_aorta,الأبهر الصاعد,aorte ascendante,ascending aorta,Aorta ascendens
+aortic_arch,قوس الأبهر,arc aortique,aortic arch,Arcus aortae
+descending_aorta,الأبهر النازل,aorte descendante,descending aorta,Aorta descendens
+pulmonary_trunk,الجذع الرئوي,tronc pulmonaire,pulmonary trunk,Truncus pulmonalis
+pulmonary_artery,الشريان الرئوي,artère pulmonaire,pulmonary artery,Arteria pulmonalis
+pulmonary_vein,الوريد الرئوي,veine pulmonaire,pulmonary vein,Vena pulmonalis
+superior_vena_cava,الوريد الأجوف العلوي,veine cave supérieure,superior vena cava,Vena cava superior
+inferior_vena_cava,الوريد الأجوف السفلي,veine cave inférieure,inferior vena cava,Vena cava inferior
+mitral_valve,الصمام المترالي,valve mitrale,mitral valve,Valva mitralis
+tricuspid_valve,الصمام ثلاثي الشرف,valve tricuspide,tricuspid valve,Valva tricuspidalis
+aortic_valve,الصمام الأبهري,valve aortique,aortic valve,Valva aortae
+pulmonary_valve,الصمام الرئوي,valve pulmonaire,pulmonary valve,Valva trunci pulmonalis
+coronary_artery,الشريان التاجي,artère coronaire,coronary artery,Arteria coronaria
+left_coronary_artery,الشريان التاجي الأيسر,artère coronaire gauche,left coronary artery,Arteria coronaria sinistra
+right_coronary_artery,الشريان التاجي الأيمن,artère coronaire droite,right coronary artery,Arteria coronaria dextra
+coronary_sinus,الجيب التاجي,sinus coronaire,coronary sinus,Sinus coronarius
+myocardium,عضلة القلب,myocarde,myocardium,Myocardium
+endocardium,شغاف القلب,endocarde,endocardium,Endocardium
+pericardium,التامور,péricarde,pericardium,Pericardium
+epicardium,النخاب,épicarde,epicardium,Epicardium
+sinoatrial_node,العقدة الجيبية الأذينية,nœud sinusal,sinoatrial node,Nodus sinuatrialis
+atrioventricular_node,العقدة الأذينية البطينية,nœud atrioventriculaire,atrioventricular node,Nodus atrioventricularis
