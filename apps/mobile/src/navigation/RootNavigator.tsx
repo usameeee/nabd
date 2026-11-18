@@ -1,6 +1,7 @@
 import { DefaultTheme, DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../screens/HomeScreen';
+import { LessonRewardScreen } from '../screens/LessonRewardScreen';
 import { LessonScreen } from '../screens/LessonScreen';
 import { ViewerScreen } from '../screens/ViewerScreen';
 import { useTheme } from '../theme/ThemeProvider';
@@ -10,6 +11,8 @@ export type RootStackParamList = {
   Viewer: undefined;
   /** Which lesson to play (T-043). The runner resolves it to a fixture/API lesson. */
   Lesson: { lessonKey: string };
+  /** What a finished lesson earned (T-045); it replaces the runner in the stack. */
+  LessonReward: { xp: number; terms: number; streak: number };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -38,6 +41,7 @@ export function RootNavigator() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Viewer" component={ViewerScreen} />
         <Stack.Screen name="Lesson" component={LessonScreen} />
+        <Stack.Screen name="LessonReward" component={LessonRewardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

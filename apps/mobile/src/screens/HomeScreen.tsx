@@ -1,4 +1,6 @@
+import { useFocusEffect } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,10 +12,11 @@ import { TabBar } from '../components/TabBar';
 import { TermCard } from '../components/TermCard';
 import { useLocale } from '../i18n/LocaleProvider';
 import type { RootStackParamList } from '../navigation/RootNavigator';
+import { STUDENT_NAME } from '../profile/student';
+import { loadProgress, totalXp } from '../progress/progress';
 import { useTheme } from '../theme/ThemeProvider';
 
-// Static content until the API is wired (T-019).
-const STUDENT = { name: 'سارة', xp: 420 };
+// Static content until the API is wired (T-019). XP is read from the local progress store (T-045).
 const LESSON_PROGRESS = 0.62;
 // Today's lesson — matches the runner fixture (T-043) until /lessons is wired.
 const LESSON_KEY = 'heart_circulation';
@@ -37,6 +40,20 @@ export function HomeScreen({ navigation }: NativeStackScreenProps<RootStackParam
   const { name, colors } = useTheme();
   const { rtl } = useLocale();
   const { t } = useTranslation();
+  // XP comes from the local progress store (T-045); re-read on focus so the reward screen shows up here.
+  const [xp, setXp] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      let active = true;
+      void loadProgress().then((state) => {
+        if (active) setXp(totalXp(state));
+      });
+      return () => {
+        active = false;
+      };
+    }, []),
+  );
 
   const dark = name === 'dark';
   const textAlign = rtl ? 'right' : 'left';
@@ -68,13 +85,13 @@ export function HomeScreen({ navigation }: NativeStackScreenProps<RootStackParam
           <Text
             style={[styles.greeting, { color: colors.text, fontFamily: fontFamily.arabicBody, textAlign }]}
           >
-            {t('home.greeting', { name: STUDENT.name })}
+            {t('home.greeting', { name: STUDENT_NAME })}
           </Text>
           <View style={[styles.xpPill, { backgroundColor: colors.reward }]}>
             <Text
               style={[styles.xpText, { color: lightColors.warningText, fontFamily: fontFamily.latinDisplay }]}
             >
-              {STUDENT.xp} {t('home.xpLabel')}
+              {xp} {t('home.xpLabel')}
             </Text>
           </View>
         </View>

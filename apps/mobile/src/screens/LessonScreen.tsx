@@ -12,6 +12,7 @@ import { HEART_LESSON, type RunnerStep } from '../lesson/lessons';
 import { QuizStep } from '../lesson/QuizStep';
 import { QUIZ_QUESTIONS } from '../lesson/quizzes';
 import type { RootStackParamList } from '../navigation/RootNavigator';
+import { completeLesson } from '../progress/progress';
 import { useTheme } from '../theme/ThemeProvider';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Lesson'>;
@@ -77,21 +78,14 @@ function StepBody({ step, onOpenModel }: { step: RunnerStep; onOpenModel: () => 
           <Text style={[styles.body, { color: colors.textSecondary, textAlign }]}>{lead(step.body)}</Text>
         </>
       ) : null}
-
-      {step.type === 'case' ? (
-        <>
-          <Text style={[styles.cardTitle, { color: colors.text, textAlign }]}>{lead(step.title)}</Text>
-          <Text style={[styles.body, { color: colors.textSecondary, textAlign }]}>{lead(step.body)}</Text>
-        </>
-      ) : null}
     </View>
   );
 }
 
 // Lesson runner (T-043, design/screens/04-lesson-quiz-reward.svg): plays a lesson's steps under a
 // segmented progress bar with Next/Previous. The quiz step (QuizStep, T-044) reveals option states
-// and an explanation; the reward screen (XP, streak, terms) lands in T-045 — the last step's
-// button therefore just exits for now.
+// and an explanation; finishing the last step records the completion (XP / streak / term collection)
+// and shows the reward screen (T-045).
 export function LessonScreen({ navigation }: Props) {
   const { colors } = useTheme();
   const { rtl } = useLocale();
@@ -114,6 +108,18 @@ export function LessonScreen({ navigation }: Props) {
   const go = (next: number) => {
     setQuizAnswered(false);
     setIndex(Math.max(0, Math.min(total - 1, next)));
+  };
+
+  // Records the completion (summed step XP + the lesson's terms + the streak) then hands the numbers
+  // to the reward screen; `replace` keeps a back-swipe from dropping into the finished runner.
+  const finish = async () => {
+    const reward = await completeLesson({
+      lessonKey: lesson.key,
+      stepIndex: total - 1,
+      xp: lesson.steps.reduce((sum, current) => sum + current.xp, 0),
+      termKeys: lesson.termKeys,
+    });
+    navigation.replace('LessonReward', reward);
   };
 
   return (
@@ -174,7 +180,7 @@ export function LessonScreen({ navigation }: Props) {
             <Button
               label={isLast ? t('lesson.finish') : t('lesson.next')}
               disabled={step.type === 'quiz' && !quizAnswered}
-              onPress={() => (isLast ? navigation.goBack() : go(index + 1))}
+              onPress={() => (isLast ? void finish() : go(index + 1))}
             />
           </View>
         </View>

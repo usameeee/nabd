@@ -71,6 +71,18 @@ export interface TranslationResources {
       /** "+{{xp}} XP" — XP is a fixed unit, identical in every locale. */
       xpReward: string;
     };
+    // Lesson complete / reward screen (T-045): what the finished lesson earned.
+    reward: {
+      /** "Well done, {{name}}!" */
+      title: string;
+      /** "{{lesson}} complete" — the lesson title is injected (it is data, not a key). */
+      complete: string;
+      xp: string;
+      terms: string;
+      streak: string;
+      next: string;
+      review: string;
+    };
   };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
@@ -357,6 +369,15 @@ export const translations: Record<Locale, TranslationResources> = {
         correct: 'ممتاز!',
         wrong: 'ليس تماماً',
         xpReward: '+{{xp}} XP',
+      },
+      reward: {
+        title: 'أحسنت يا {{name}}!',
+        complete: '{{lesson}} مكتمل',
+        xp: 'نقاط',
+        terms: 'مصطلحات',
+        streak: 'سلسلة',
+        next: 'الدرس التالي',
+        review: 'راجع المصطلحات',
       },
     },
     admin: {
@@ -652,6 +673,15 @@ export const translations: Record<Locale, TranslationResources> = {
         wrong: 'Pas tout à fait',
         xpReward: '+{{xp}} XP',
       },
+      reward: {
+        title: 'Bien joué, {{name}} !',
+        complete: '{{lesson}} terminé',
+        xp: 'points',
+        terms: 'termes',
+        streak: 'série',
+        next: 'Leçon suivante',
+        review: 'Réviser les termes',
+      },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -945,6 +975,15 @@ export const translations: Record<Locale, TranslationResources> = {
         correct: 'Excellent!',
         wrong: 'Not quite',
         xpReward: '+{{xp}} XP',
+      },
+      reward: {
+        title: 'Well done, {{name}}!',
+        complete: '{{lesson}} complete',
+        xp: 'points',
+        terms: 'terms',
+        streak: 'streak',
+        next: 'Next lesson',
+        review: 'Review terms',
       },
     },
     admin: {
