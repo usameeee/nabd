@@ -1,5 +1,5 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,7 +8,8 @@ import { darkColors, fontFamily, fontSize, lightColors, radius, spacing } from '
 import { Button } from '../components/Button';
 import { ProgressBar } from '../components/ProgressBar';
 import { useLocale } from '../i18n/LocaleProvider';
-import { HEART_LESSON, type RunnerStep } from '../lesson/lessons';
+import { type RunnerLesson, type RunnerStep } from '../lesson/lessons';
+import { loadLesson } from '../lesson/lessonSource';
 import { QuizStep } from '../lesson/QuizStep';
 import { QUIZ_QUESTIONS } from '../lesson/quizzes';
 import type { RootStackParamList } from '../navigation/RootNavigator';
@@ -86,18 +87,33 @@ function StepBody({ step, onOpenModel }: { step: RunnerStep; onOpenModel: () => 
 // segmented progress bar with Next/Previous. The quiz step (QuizStep, T-044) reveals option states
 // and an explanation; finishing the last step records the completion (XP / streak / term collection)
 // and shows the reward screen (T-045).
-export function LessonScreen({ navigation }: Props) {
+export function LessonScreen({ navigation, route }: Props) {
   const { colors } = useTheme();
   const { rtl } = useLocale();
   const { t } = useTranslation();
   const [index, setIndex] = useState(0);
   // Whether the current quiz step has an answer (T-044) — holds "Next" back until it does.
   const [quizAnswered, setQuizAnswered] = useState(false);
+  // Offline-first lesson load (T-050): cache → API → bundled fixture, so the runner never renders
+  // blanks and plays the same whether the device is online or not.
+  const [lesson, setLesson] = useState<RunnerLesson | null>(null);
 
-  const lesson = HEART_LESSON;
+  useEffect(() => {
+    let active = true;
+    void loadLesson(route.params.lessonKey).then((result) => {
+      if (active) setLesson(result.lesson);
+    });
+    return () => {
+      active = false;
+    };
+  }, [route.params.lessonKey]);
+
+  // Nothing to play until the (cache-first, near-instant) load resolves.
+  if (!lesson) return null;
+
   const total = lesson.steps.length;
   const step = lesson.steps[index];
-  // A mounted screen always has at least the current step; guard keeps TS honest.
+  // A mounted runner always has at least the current step; guard keeps TS honest.
   if (!step) return null;
 
   const textAlign: 'right' | 'left' = rtl ? 'right' : 'left';
