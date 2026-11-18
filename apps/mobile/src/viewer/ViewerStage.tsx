@@ -16,8 +16,10 @@ import { darkColors, fontFamily, fontSize, radius, spacing } from '@nabd/shared'
 import { HeartModel, type ModelFrame } from './HeartModel';
 import { HotspotAnchors, type HotspotMarker } from './HotspotAnchors';
 import { HotspotOverlay } from './HotspotOverlay';
+import { LayerChips } from './LayerChips';
 import { TermSheet } from './TermSheet';
 import { HEART_HOTSPOTS } from './hotspots';
+import { HEART_LAYERS, type LayerKey } from './layers';
 import { useTheme } from '../theme/ThemeProvider';
 
 /** Camera rig state. Only mutated through a ref so gestures never re-render React. */
@@ -99,6 +101,7 @@ export function ViewerStage() {
   const { t } = useTranslation();
   const [ready, setReady] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
+  const [layer, setLayer] = useState<LayerKey>(HEART_LAYERS[0]?.key ?? 'muscles');
   const markReady = useCallback(() => setReady(true), []);
 
   const motion = useRef<Motion>({
@@ -123,6 +126,13 @@ export function ViewerStage() {
     }
     return map;
   }, []);
+
+  // The active layer (T-035) decides which hotspots are shown; the heart model populates a single
+  // layer, so today every hotspot is on it and the row shows one chip.
+  const visibleHotspots = useMemo(
+    () => HEART_HOTSPOTS.filter((hotspot) => hotspot.layer === layer),
+    [layer],
+  );
 
   // Turn the model so the tapped hotspot faces the camera, then open its term sheet.
   const selectHotspot = useCallback((termKey: string) => {
@@ -214,7 +224,7 @@ export function ViewerStage() {
         <Suspense fallback={null}>
           <Rig motion={motion}>
             <HeartModel onFrame={handleFrame}>
-              <HotspotAnchors hotspots={HEART_HOTSPOTS} markers={markers} />
+              <HotspotAnchors hotspots={visibleHotspots} markers={markers} />
             </HeartModel>
           </Rig>
           <Ready onReady={markReady} />
@@ -245,16 +255,20 @@ export function ViewerStage() {
             </Text>
           </View>
         )}
+      </View>
 
-        <View style={styles.hintWrap}>
+      {/* Bottom controls: the gesture hint and the layer chips (only what the model supports, T-035). */}
+      <View pointerEvents="box-none" style={styles.bottom}>
+        <View pointerEvents="none" style={styles.hintWrap}>
           <View style={[styles.hint, { backgroundColor: darkColors.surface }]}>
             <Text style={[styles.hintText, { color: darkColors.text }]}>{t('viewer.hint')}</Text>
           </View>
         </View>
+        <LayerChips active={layer} onSelect={setLayer} />
       </View>
 
       <HotspotOverlay
-        hotspots={HEART_HOTSPOTS}
+        hotspots={visibleHotspots}
         markers={markers}
         selectedKey={selected}
         onSelect={selectHotspot}
@@ -299,11 +313,14 @@ const styles = StyleSheet.create({
     fontSize: fontSize.caption,
     fontFamily: fontFamily.arabicBody,
   },
-  hintWrap: {
+  bottom: {
     position: 'absolute',
     left: 0,
     right: 0,
     bottom: spacing.lg,
+    gap: spacing.sm,
+  },
+  hintWrap: {
     alignItems: 'center',
   },
   hint: {

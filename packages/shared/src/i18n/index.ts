@@ -39,6 +39,8 @@ export interface TranslationResources {
     loading: string;
     hint: string;
     close: string;
+    // Layer chips (T-035). Only the layers this model supports get a label (docs/03 layers).
+    layers: { muscles: string };
   };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
@@ -138,6 +140,7 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'جارٍ تحميل المجسّم…',
       hint: 'اسحب للتدوير · اقرص للتقريب',
       close: 'إغلاق',
+      layers: { muscles: 'العضلات' },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -238,6 +241,7 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'Chargement du modèle…',
       hint: 'Glisser pour tourner · Pincer pour zoomer',
       close: 'Fermer',
+      layers: { muscles: 'Muscles' },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -338,6 +342,7 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'Loading model…',
       hint: 'Drag to rotate · Pinch to zoom',
       close: 'Close',
+      layers: { muscles: 'Muscles' },
     },
     admin: {
       brandLabel: 'Nabd Admin',
