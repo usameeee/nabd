@@ -4,6 +4,7 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { LessonRewardScreen } from '../screens/LessonRewardScreen';
 import { LessonScreen } from '../screens/LessonScreen';
 import { ReviewScreen } from '../screens/ReviewScreen';
+import { SourcesScreen } from '../screens/SourcesScreen';
 import { ViewerScreen } from '../screens/ViewerScreen';
 import { useTheme } from '../theme/ThemeProvider';
 
@@ -16,6 +17,8 @@ export type RootStackParamList = {
   LessonReward: { xp: number; terms: number; streak: number };
   /** Spaced-repetition review of the collected terms (T-046). */
   Review: undefined;
+  /** "Sources & licenses" — the generated attribution view (T-052). */
+  Sources: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -46,6 +49,7 @@ export function RootNavigator() {
         <Stack.Screen name="Lesson" component={LessonScreen} />
         <Stack.Screen name="LessonReward" component={LessonRewardScreen} />
         <Stack.Screen name="Review" component={ReviewScreen} />
+        <Stack.Screen name="Sources" component={SourcesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

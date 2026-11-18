@@ -101,6 +101,17 @@ export interface TranslationResources {
     done: string;
     back: string;
   };
+  // Sources & licenses (T-052): the generated attribution view (docs/03 → attributions). The
+  // licence names and attribution texts are credited data shown verbatim; only this chrome is
+  // translated.
+  sources: {
+    title: string;
+    intro: string;
+    empty: string;
+    /** Opens the original asset/source in the browser. */
+    viewSource: string;
+    kinds: { model: string; term: string; media: string };
+  };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
     brandLabel: string;
@@ -408,6 +419,13 @@ export const translations: Record<Locale, TranslationResources> = {
       empty: 'لا يوجد مصطلحات للمراجعة حالياً',
       done: 'أتممت المراجعة!',
       back: 'رجوع إلى الرئيسية',
+    },
+    sources: {
+      title: 'المصادر والتراخيص',
+      intro: 'المحتوى والمجسّمات المستخدمة في نبض، مع مصدرها وترخيصها.',
+      empty: 'لا توجد مصادر بعد.',
+      viewSource: 'افتح المصدر',
+      kinds: { model: 'مجسّم ثلاثي الأبعاد', term: 'مصطلح', media: 'وسائط' },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -724,6 +742,13 @@ export const translations: Record<Locale, TranslationResources> = {
       done: 'Révision terminée !',
       back: "Retour à l'accueil",
     },
+    sources: {
+      title: 'Sources et licences',
+      intro: 'Les contenus et modèles utilisés dans Nabd, avec leur source et leur licence.',
+      empty: 'Aucune source pour le moment.',
+      viewSource: 'Ouvrir la source',
+      kinds: { model: 'Modèle 3D', term: 'Terme', media: 'Média' },
+    },
     admin: {
       brandLabel: 'Nabd Admin',
       nav: {
@@ -1038,6 +1063,13 @@ export const translations: Record<Locale, TranslationResources> = {
       empty: 'Nothing to review right now',
       done: 'Review complete',
       back: 'Back to home',
+    },
+    sources: {
+      title: 'Sources & licenses',
+      intro: 'The content and models used in Nabd, with their source and licence.',
+      empty: 'No sources yet.',
+      viewSource: 'Open source',
+      kinds: { model: '3D model', term: 'Term', media: 'Media' },
     },
     admin: {
       brandLabel: 'Nabd Admin',

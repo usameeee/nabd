@@ -160,6 +160,15 @@ export function HomeScreen({ navigation }: NativeStackScreenProps<RootStackParam
         />
 
         <LanguageSwitcher />
+
+        {/* Sources & licenses (T-052): the generated attribution view (docs/03). */}
+        <Pressable accessibilityRole="button" onPress={() => navigation.navigate('Sources')}>
+          <Text
+            style={[styles.sourcesLink, { color: colors.textSecondary, fontFamily: fontFamily.arabicBody, textAlign }]}
+          >
+            {t('sources.title')}
+          </Text>
+        </Pressable>
       </ScrollView>
       <View style={styles.tabBarWrap}>
         <TabBar />
@@ -244,5 +253,9 @@ const styles = StyleSheet.create({
   tabBarWrap: {
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.md,
+  },
+  sourcesLink: {
+    fontSize: fontSize.caption,
+    textDecorationLine: 'underline',
   },
 });

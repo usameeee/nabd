@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { attributionsRouter } from './attributions.routes';
 import { authRouter } from './auth.routes';
 import { diseasesRouter } from './diseases.routes';
 import { healthRouter } from './health.routes';
@@ -17,3 +18,4 @@ apiRouter.use('/models', modelsRouter);
 apiRouter.use('/hotspots', hotspotsRouter);
 apiRouter.use('/diseases', diseasesRouter);
 apiRouter.use('/lessons', lessonsRouter);
+apiRouter.use('/attributions', attributionsRouter);
