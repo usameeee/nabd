@@ -428,3 +428,120 @@ button {
 .field__input--mono {
   font-family: var(--font-family-mono);
 }
+
+.button--danger {
+  background: transparent;
+  border: 1px solid var(--color-danger-text);
+  color: var(--color-danger-text);
+}
+
+.table__row--active td {
+  background: var(--color-bg);
+}
+
+/* ---------- Organs & models ---------- */
+.models {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.models__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.models__name {
+  margin: 0;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-heading);
+}
+
+.models__head-actions {
+  margin-inline-start: auto;
+  display: flex;
+  gap: var(--space-md);
+}
+
+.models__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.models__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-lg) 0;
+}
+
+.models__panel-title {
+  margin: 0;
+  font-size: var(--font-title);
+}
+
+.models__detail {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.models__detail-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-sm);
+  align-items: baseline;
+}
+
+.models__value {
+  font-size: var(--font-body);
+  color: var(--color-text);
+}
+
+.models__value--mono {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-caption);
+}
+
+.models__detail-actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.models__version {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.models__version-name {
+  font-size: var(--font-body);
+}
+
+/* ---------- Form extras ---------- */
+.fieldset {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-button);
+}
+
+.field__checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-body);
+}
+
+.vec3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+

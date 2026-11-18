@@ -40,7 +40,7 @@ export interface TranslationResources {
     hint: string;
     close: string;
     // Layer chips (T-035). Only the layers this model supports get a label (docs/03 layers).
-    layers: { muscles: string };
+    layers: { muscles: string; vessels: string; skeleton: string; nerves: string };
   };
   // Admin dashboard (team-facing) — same key-based rule as the app.
   admin: {
@@ -106,6 +106,65 @@ export interface TranslationResources {
       cancel: string;
       error: string;
     };
+    models: {
+      selectPrompt: string;
+      newModel: string;
+      editModel: string;
+      empty: string;
+      createTitle: string;
+      editTitle: string;
+      key: string;
+      keyHint: string;
+      titleTermKey: string;
+      system: string;
+      status: string;
+      versions: string;
+      light: string;
+      detailed: string;
+      url: string;
+      sizeBytes: string;
+      polyCount: string;
+      layers: string;
+      meshNames: string;
+      license: string;
+      attribution: string;
+      sourceUrl: string;
+      optional: string;
+      save: string;
+      saving: string;
+      cancel: string;
+      error: string;
+      statusDraft: string;
+      statusVerified: string;
+      publish: string;
+      unpublish: string;
+      hotspots: string;
+      newHotspot: string;
+      noHotspots: string;
+      point: string;
+      selectHotspot: string;
+      linkedTerm: string;
+      layer: string;
+      order: string;
+      position: string;
+      camera: string;
+      cameraPosition: string;
+      cameraTarget: string;
+      cameraZoom: string;
+      meshName: string;
+      edit: string;
+      deleteHotspot: string;
+      confirmDeleteHotspot: string;
+      versionsLicense: string;
+      lightHint: string;
+      detailedHint: string;
+      attributionRequired: string;
+      none: string;
+      createHotspotTitle: string;
+      editHotspotTitle: string;
+      termKeyHint: string;
+      errorHotspot: string;
+    };
   };
 }
 
@@ -140,7 +199,7 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'جارٍ تحميل المجسّم…',
       hint: 'اسحب للتدوير · اقرص للتقريب',
       close: 'إغلاق',
-      layers: { muscles: 'العضلات' },
+      layers: { muscles: 'العضلات', vessels: 'الأوعية', skeleton: 'الهيكل', nerves: 'الأعصاب' },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -209,6 +268,65 @@ export const translations: Record<Locale, TranslationResources> = {
         cancel: 'إلغاء',
         error: 'تعذّر حفظ المصطلح.',
       },
+      models: {
+        selectPrompt: 'اختر مجسّماً لتحريره، أو أنشئ مجسّماً جديداً.',
+        newModel: 'مجسّم جديد',
+        editModel: 'تعديل المجسّم',
+        empty: 'لا توجد مجسّمات.',
+        createTitle: 'مجسّم جديد',
+        editTitle: 'تعديل المجسّم',
+        key: 'المفتاح (snake_case)',
+        keyHint: 'أحرف صغيرة، مثال heart. لا يمكن تغييره لاحقاً.',
+        titleTermKey: 'مفتاح مصطلح العنوان',
+        system: 'الجهاز',
+        status: 'الحالة',
+        versions: 'الإصدارات',
+        light: 'خفيف',
+        detailed: 'مفصّل',
+        url: 'الرابط',
+        sizeBytes: 'الحجم (بايت)',
+        polyCount: 'عدد الأوجه',
+        layers: 'الطبقات',
+        meshNames: 'أسماء الشبكات (مفصولة بفواصل)',
+        license: 'الترخيص',
+        attribution: 'الإسناد',
+        sourceUrl: 'رابط المصدر',
+        optional: 'اختياري',
+        save: 'حفظ',
+        saving: 'جارٍ الحفظ…',
+        cancel: 'إلغاء',
+        error: 'تعذّر الحفظ.',
+        statusDraft: 'مسودة',
+        statusVerified: 'موثّق',
+        publish: 'نشر',
+        unpublish: 'إلغاء النشر',
+        hotspots: 'النقاط',
+        newHotspot: 'نقطة جديدة',
+        noHotspots: 'لا توجد نقاط بعد.',
+        point: 'نقطة',
+        selectHotspot: 'اختر نقطة لعرض تفاصيلها.',
+        linkedTerm: 'المصطلح المرتبط',
+        layer: 'الطبقة',
+        order: 'الترتيب',
+        position: 'الموضع',
+        camera: 'الكاميرا',
+        cameraPosition: 'موضع الكاميرا',
+        cameraTarget: 'هدف الكاميرا',
+        cameraZoom: 'التقريب',
+        meshName: 'اسم الشبكة',
+        edit: 'تعديل',
+        deleteHotspot: 'حذف النقطة',
+        confirmDeleteHotspot: 'هل تريد حذف هذه النقطة؟',
+        versionsLicense: 'إصدارات المجسّم والترخيص',
+        lightHint: 'يُحمَّل أولاً',
+        detailedHint: 'في الخلفية',
+        attributionRequired: 'الإسناد مطلوب',
+        none: 'غير محدد',
+        createHotspotTitle: 'نقطة جديدة',
+        editHotspotTitle: 'تعديل النقطة',
+        termKeyHint: 'مفتاح مصطلح من قسم المصطلحات، مثال left_ventricle.',
+        errorHotspot: 'تعذّر حفظ النقطة.',
+      },
     },
   },
   fr: {
@@ -241,7 +359,7 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'Chargement du modèle…',
       hint: 'Glisser pour tourner · Pincer pour zoomer',
       close: 'Fermer',
-      layers: { muscles: 'Muscles' },
+      layers: { muscles: 'Muscles', vessels: 'Vaisseaux', skeleton: 'Squelette', nerves: 'Nerfs' },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -310,6 +428,65 @@ export const translations: Record<Locale, TranslationResources> = {
         cancel: 'Annuler',
         error: 'Impossible d’enregistrer le terme.',
       },
+      models: {
+        selectPrompt: 'Choisissez un modèle à modifier, ou créez-en un.',
+        newModel: 'Nouveau modèle',
+        editModel: 'Modifier le modèle',
+        empty: 'Aucun modèle trouvé.',
+        createTitle: 'Nouveau modèle',
+        editTitle: 'Modifier le modèle',
+        key: 'Clé (snake_case)',
+        keyHint: 'En minuscules, ex. heart. Non modifiable ensuite.',
+        titleTermKey: 'Clé du terme de titre',
+        system: 'Système',
+        status: 'Statut',
+        versions: 'Versions',
+        light: 'Léger',
+        detailed: 'Détaillé',
+        url: 'URL',
+        sizeBytes: 'Taille (octets)',
+        polyCount: 'Polygones',
+        layers: 'Calques',
+        meshNames: 'Noms de maillages (séparés par des virgules)',
+        license: 'Licence',
+        attribution: 'Attribution',
+        sourceUrl: 'URL de la source',
+        optional: 'facultatif',
+        save: 'Enregistrer',
+        saving: 'Enregistrement…',
+        cancel: 'Annuler',
+        error: 'Impossible d’enregistrer.',
+        statusDraft: 'Brouillon',
+        statusVerified: 'Vérifié',
+        publish: 'Publier',
+        unpublish: 'Dépublier',
+        hotspots: 'Points',
+        newHotspot: 'Nouveau point',
+        noHotspots: 'Aucun point pour l’instant.',
+        point: 'Point',
+        selectHotspot: 'Sélectionnez un point pour voir ses détails.',
+        linkedTerm: 'Terme lié',
+        layer: 'Calque',
+        order: 'Ordre',
+        position: 'Position',
+        camera: 'Caméra',
+        cameraPosition: 'Position de la caméra',
+        cameraTarget: 'Cible de la caméra',
+        cameraZoom: 'Zoom',
+        meshName: 'Nom du maillage',
+        edit: 'Modifier',
+        deleteHotspot: 'Supprimer le point',
+        confirmDeleteHotspot: 'Supprimer ce point ?',
+        versionsLicense: 'Versions du modèle et licence',
+        lightHint: 'Chargé en premier',
+        detailedHint: 'En arrière-plan',
+        attributionRequired: 'Attribution requise',
+        none: 'non défini',
+        createHotspotTitle: 'Nouveau point',
+        editHotspotTitle: 'Modifier le point',
+        termKeyHint: 'Une clé de terme, ex. left_ventricle.',
+        errorHotspot: 'Impossible d’enregistrer le point.',
+      },
     },
   },
   en: {
@@ -342,7 +519,7 @@ export const translations: Record<Locale, TranslationResources> = {
       loading: 'Loading model…',
       hint: 'Drag to rotate · Pinch to zoom',
       close: 'Close',
-      layers: { muscles: 'Muscles' },
+      layers: { muscles: 'Muscles', vessels: 'Vessels', skeleton: 'Skeleton', nerves: 'Nerves' },
     },
     admin: {
       brandLabel: 'Nabd Admin',
@@ -410,6 +587,65 @@ export const translations: Record<Locale, TranslationResources> = {
         saving: 'Saving…',
         cancel: 'Cancel',
         error: 'Could not save the term.',
+      },
+      models: {
+        selectPrompt: 'Select a model to edit, or create a new one.',
+        newModel: 'New model',
+        editModel: 'Edit model',
+        empty: 'No models found.',
+        createTitle: 'New model',
+        editTitle: 'Edit model',
+        key: 'Key (snake_case)',
+        keyHint: 'Lowercase, e.g. heart. Cannot be changed later.',
+        titleTermKey: 'Title term key',
+        system: 'System',
+        status: 'Status',
+        versions: 'Versions',
+        light: 'Light',
+        detailed: 'Detailed',
+        url: 'URL',
+        sizeBytes: 'Size (bytes)',
+        polyCount: 'Polygons',
+        layers: 'Layers',
+        meshNames: 'Mesh names (comma separated)',
+        license: 'License',
+        attribution: 'Attribution',
+        sourceUrl: 'Source URL',
+        optional: 'optional',
+        save: 'Save',
+        saving: 'Saving…',
+        cancel: 'Cancel',
+        error: 'Could not save.',
+        statusDraft: 'Draft',
+        statusVerified: 'Verified',
+        publish: 'Publish',
+        unpublish: 'Unpublish',
+        hotspots: 'Hotspots',
+        newHotspot: 'New hotspot',
+        noHotspots: 'No hotspots yet.',
+        point: 'Point',
+        selectHotspot: 'Select a hotspot to view its details.',
+        linkedTerm: 'Linked term',
+        layer: 'Layer',
+        order: 'Order',
+        position: 'Position',
+        camera: 'Camera',
+        cameraPosition: 'Camera position',
+        cameraTarget: 'Camera target',
+        cameraZoom: 'Zoom',
+        meshName: 'Mesh name',
+        edit: 'Edit',
+        deleteHotspot: 'Delete hotspot',
+        confirmDeleteHotspot: 'Delete this hotspot?',
+        versionsLicense: 'Model versions & license',
+        lightHint: 'Loaded first',
+        detailedHint: 'In background',
+        attributionRequired: 'Attribution required',
+        none: 'not set',
+        createHotspotTitle: 'New hotspot',
+        editHotspotTitle: 'Edit hotspot',
+        termKeyHint: 'A term key from Terms, e.g. left_ventricle.',
+        errorHotspot: 'Could not save the hotspot.',
       },
     },
   },
